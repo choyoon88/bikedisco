@@ -1,29 +1,48 @@
-var locations = [];
+const urls = [
+    "https://api.citybik.es/v2/networks/dublinbikes",
+    "https://api.citybik.es/v2/networks/cork",
+    "https://api.citybik.es/v2/networks/waterford",
+    "https://api.citybik.es/v2/networks/galway",
+    "https://api.citybik.es/v2/networks/limerick",
+    "https://api.citybik.es/v2/networks/nextbike-glasgow",
+    "https://api.citybik.es/v2/networks/nextbike-stirling",
+    "https://api.citybik.es/v2/networks/santander-cycles-mk-milton-keynes",
+    "https://api.citybik.es/v2/networks/santander-cycles-swansea-swansea-university",
+    "https://api.citybik.es/v2/networks/santander-brunel",
+    "https://api.citybik.es/v2/networks/santander-cycles",
+    "https://api.citybik.es/v2/networks/nextbike-university-of-surrey",
+    "https://api.citybik.es/v2/networks/santander-cycles",
+    "https://api.citybik.es/v2/networks/co-bikes-exeter",
+    "https://api.citybik.es/v2/networks/belfastbikes-belfast",
 
-fetch("https://api.citybik.es/v2/networks/dublinbikes")
-    .then((response) => response.json())
-    .then((data) => {
-        const stations = data.network.stations;
+]
 
-        stations.forEach((station) => {
-            const lat = station.latitude;
-            const lng = station.longitude;
+Promise.all(urls.map(url => fetch(url).then(response => response.json())))
+    .then((dataArray) => {
+        const locations = [];
+        dataArray.forEach(data => {
+            const stations = data.network.stations;
 
-            locations.push({
-                lat: lat,
-                lng: lng
-            }); //Add coordinates to the location array from citybike api
+            stations.forEach((station) => {
+                const lat = station.latitude;
+                const lng = station.longitude;
+
+                locations.push({
+                    lat: lat,
+                    lng: lng
+                }); //Add coordinates to the location array from citybike api
+            })
         });
 
-        initMap();
+        initMap(locations);
     })
     .catch((error) => {
         console.error("Error fetching data:", error);
     });
 
-function initMap() {
+function initMap(locations) {
     var map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 10,
+        zoom: 6,
         center: {
             lat: locations[0].lat,
             lng: locations[0].lng
