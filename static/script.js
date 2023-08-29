@@ -41,7 +41,8 @@ Promise.all(urls.map(url => fetch(url).then(response => response.json())))
     });
 
 function initMap(locations) {
-    var map = new google.maps.Map(document.getElementById("map"), {
+
+    let map = new google.maps.Map(document.getElementById("map"), {
         zoom: 6,
         center: {
             lat: locations[0].lat,
@@ -53,16 +54,29 @@ function initMap(locations) {
     var markers = [];
 
     // Add markers to the map using the locations array
-    for (var i = 0; i < locations.length; i++) {
-        var marker = new google.maps.Marker({
+    for (let i = 0; i < locations.length; i++) {
+        let marker = new google.maps.Marker({
             position: locations[i],
             label: labels[i % labels.length]
         });
+
+        // Adding infowindow basic code structure reference: https://developers.google.com/maps/documentation/javascript/infowindows
+        const infowindow = new google.maps.InfoWindow({
+            content: "blah blah",
+        });
+
+        marker.addListener("click", () => {
+            infowindow.open({
+                anchor: marker,
+                map,
+            });
+        });
+    
         markers.push(marker);
     }
 
     // Use MarkerClusterer to create marker clusters
     new MarkerClusterer(map, markers, {
         imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-    });
+    });  
 }

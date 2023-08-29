@@ -106,3 +106,11 @@ Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` f
 ---
 
 Happy coding!
+
+
+## Credits
+
+- [CityBikes API Documentation](https://api.citybik.es/v2/#net_resource)
+- jQuery
+- Google Maps API
+- Bootstrap 5.3.1
