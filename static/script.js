@@ -14,55 +14,66 @@ const urls = [
     "https://api.citybik.es/v2/networks/santander-cycles",
     "https://api.citybik.es/v2/networks/co-bikes-exeter",
     "https://api.citybik.es/v2/networks/belfastbikes-belfast",
-
 ]
 
 Promise.all(urls.map(url => fetch(url).then(response => response.json())))
     .then((dataArray) => {
-        const locations = [];
+        console.log("API Data:", dataArray);
+        const locationsAndStationInfos = [];
         dataArray.forEach(data => {
             const stations = data.network.stations;
 
             stations.forEach((station) => {
                 const lat = station.latitude;
                 const lng = station.longitude;
+                const name = station.name;
+                const freeBike = station.free_bikes;
 
-                locations.push({
+                //Add coordinates and station infos to the locationsAndStationInfos array from citybike api
+                locationsAndStationInfos.push({
                     lat: lat,
-                    lng: lng
-                }); //Add coordinates to the location array from citybike api
+                    lng: lng,
+                    name, 
+                    freeBike,
+                }); 
             })
         });
 
-        initMap(locations);
+        initMap(locationsAndStationInfos);
     })
     .catch((error) => {
         console.error("Error fetching data:", error);
     });
 
-function initMap(locations) {
+
+function initMap(locationsAndStationInfos) {
 
     let map = new google.maps.Map(document.getElementById("map"), {
         zoom: 6,
         center: {
-            lat: locations[0].lat,
-            lng: locations[0].lng
+            lat: locationsAndStationInfos[0].lat,
+            lng: locationsAndStationInfos[0].lng
         }
     });
 
     var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     var markers = [];
 
-    // Add markers to the map using the locations array
-    for (let i = 0; i < locations.length; i++) {
+
+    for (let i = 0; i < locationsAndStationInfos.length; i++) {
+        
         let marker = new google.maps.Marker({
-            position: locations[i],
+            position: locationsAndStationInfos[i],
             label: labels[i % labels.length]
         });
 
+        let contentString = `<strong>${locationsAndStationInfos[i].name}</strong><p>Free Bikes: ${locationsAndStationInfos[i].freeBike}</p>`
+
+        // const contentString = `${name} <br> Free Bikes: ${freeBike}`;
+
         // Adding infowindow basic code structure reference: https://developers.google.com/maps/documentation/javascript/infowindows
         const infowindow = new google.maps.InfoWindow({
-            content: "blah blah",
+            content: contentString,
         });
 
         marker.addListener("click", () => {
@@ -71,12 +82,11 @@ function initMap(locations) {
                 map,
             });
         });
-    
+
         markers.push(marker);
     }
-
     // Use MarkerClusterer to create marker clusters
     new MarkerClusterer(map, markers, {
         imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-    });  
+    });
 }
