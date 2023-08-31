@@ -1,10 +1,10 @@
 ---
 name: Bike Disco
 about: This is the default template for issues.
-title: "<AREA>: <TITLE>"
+title: 'AREA: TITLE'
 labels: ''
 assignees: ''
 
 ---
 
-As a **role**, I can **capability** so that **received benefit**
+As a **_role_**, I can **_capability_** so that **_received benefit_**
