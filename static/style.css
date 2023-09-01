@@ -1,5 +1,12 @@
+body {
+  padding-top: 100px;
+}
 
- #map {
+.navbar-brand {
+  margin-left: 10px;
+}
+
+#map {
     height: 100%;
     min-height: 600px;
-  }
+}

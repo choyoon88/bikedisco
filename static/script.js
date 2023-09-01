@@ -69,8 +69,6 @@ function initMap(locationsAndStationInfos) {
 
         let contentString = `<strong>${locationsAndStationInfos[i].name}</strong><p>Free Bikes: ${locationsAndStationInfos[i].freeBike}</p>`
 
-        // const contentString = `${name} <br> Free Bikes: ${freeBike}`;
-
         // Adding infowindow basic code structure reference: https://developers.google.com/maps/documentation/javascript/infowindows
         const infowindow = new google.maps.InfoWindow({
             content: contentString,
