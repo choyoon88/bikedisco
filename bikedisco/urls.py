@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from searchstation.views import get_searchstation
+from searchstation.views import get_searchstation, get_contact, get_review, get_join, get_login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', get_searchstation, name='get_searchstation')
+    path('', get_searchstation, name='home'),
+    path('contact/', get_contact, name='contact'),
+    path('review/', get_review, name='review'),
+    path('join/', get_join, name='join'),
+    path('login/', get_login, name='login'),
 ]
