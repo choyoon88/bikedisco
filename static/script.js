@@ -9,7 +9,6 @@ const urls = [
     "https://api.citybik.es/v2/networks/santander-cycles-mk-milton-keynes",
     "https://api.citybik.es/v2/networks/santander-cycles-swansea-swansea-university",
     "https://api.citybik.es/v2/networks/santander-brunel",
-    "https://api.citybik.es/v2/networks/santander-cycles",
     "https://api.citybik.es/v2/networks/nextbike-university-of-surrey",
     "https://api.citybik.es/v2/networks/santander-cycles",
     "https://api.citybik.es/v2/networks/co-bikes-exeter",
