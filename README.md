@@ -114,3 +114,4 @@ Happy coding!
 - jQuery
 - Google Maps API
 - Bootstrap 5.3.1
+- Django
