@@ -43,7 +43,7 @@ class Migration(migrations.Migration):
                 ('body', models.TextField()),
                 ('created_on', models.DateTimeField(auto_now_add=True)),
                 ('approved', models.BooleanField(default=False)),
-                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comments', to='searchstation.post')),
+                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comments', to='review.post')),
             ],
             options={
                 'ordering': ['created_on'],

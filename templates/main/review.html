@@ -1,4 +1,31 @@
-{% extends "main/base.html" %}
+{% extends "main/base.html" %} 
 {% block content %}
-    <div><p>this is a review page</p></div>
+<div><p>this is a review page</p></div>
+
+<div class="container-fluid">
+  <div class="row">
+    {% if post_list %}
+    <p>Number of Posts: {{ post_list|length }}</p>
+    {% for post in post_list %}
+    <div class="col-12 mt-3 left">
+      <div class="card" style="width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="col">
+      <p>No posts available</p>
+    </div>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}

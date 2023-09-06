@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.conf import settings
+from django.views import generic
+from .models import Post
 
 
 # Create your views here.
@@ -26,3 +28,11 @@ def get_join(request):
 
 def get_login(request):
     return render(request, 'main/login.html')
+
+
+class PostList(generic.ListView):
+    model = Post
+    queryset = Post.objects.filter(status=1).order_by('-created_on')
+    template_name = 'main/review.html'
+    context_object_name = 'post_list'
+    paginate_by = 6

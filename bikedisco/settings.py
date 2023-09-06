@@ -47,9 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'cloudinary_storage',
     'django.contrib.staticfiles',
+    'review.apps.ReviewConfig',
     'cloudinary',
     'django_summernote',
-    'searchstation',
 ]
 
 MIDDLEWARE = [
