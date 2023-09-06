@@ -1,31 +1,39 @@
 {% extends "main/base.html" %} 
 {% block content %}
-<div><p>this is a review page</p></div>
 
 <div class="container-fluid">
-  <div class="row">
-    {% if post_list %}
-    <p>Number of Posts: {{ post_list|length }}</p>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
     {% for post in post_list %}
-    <div class="col-12 mt-3 left">
-      <div class="card" style="width: 18rem">
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <div class="card h-100" style="width: 100%">
+        {% if "placeholder" in post.featured_image.url %}
+        <img
+          src="../../static/images/placeholder_bike_unsplash.jpg"
+          class="card-img-top"
+          alt="bicycle placeholder image"
+        />
+        {% else %}
+        <img
+          src="{{ post.featured_image.url }}"
+          class="card-img-top"
+          alt="bicycle placeholder image"
+        />
+        {% endif %}
+               
         <div class="card-body">
           <h5 class="card-title">{{ post.title }}</h5>
           <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            {{ post.content|striptags|truncatechars:180 }}
           </p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
+          <p class="card-text tect-muted h6 text-body-secondary">{{ post.created_on }}
+            <br><i class="fa-regular fa-heart text-body-secondary"></i>{{ post.number_of_likes }}</p>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="btn btn-primary float-end">Read full review</a>
         </div>
       </div>
     </div>
     {% endfor %}
-    {% else %}
-    <div class="col">
-      <p>No posts available</p>
-    </div>
-    {% endif %}
   </div>
 </div>
 {% endblock %}
