@@ -115,3 +115,4 @@ Happy coding!
 - Google Maps API
 - [Bootstrap 5.3.1](https://getbootstrap.com/docs/5.3/)
 - Django
+- [Django Allauto](https://django-allauth.readthedocs.io/en/latest/)

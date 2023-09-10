@@ -17,7 +17,7 @@
     ></script>
     <script type="module" src="{% static 'script.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
-    <title>BikeDisco - Discover shared bikes and Disco!</title>
+    <title>BikeDisco | Discover shared bikes and Disco!</title>
     <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
   </head>
   <body>
@@ -36,13 +36,19 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'review' %}">Reviews</a>
+            </li>     
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_signup' %}">Join</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'join' %}">Join</a>
+              <a class="nav-link" href="{% url 'account_login' %}">Login</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">Login</a>
-            </li>
+            {% endif %}                   
             <li class="nav-item">
               <a class="nav-link" href="{% url 'contact' %}">Contact</a>
             </li>
