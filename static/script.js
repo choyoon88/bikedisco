@@ -66,7 +66,14 @@ function initMap(locationsAndStationInfos) {
             label: labels[i % labels.length]
         });
 
-        let contentString = `<strong>${locationsAndStationInfos[i].name}</strong><p>Free Bikes: ${locationsAndStationInfos[i].freeBike}</p>`
+        let buttonId = `custom-btn-${i}`;
+
+        let contentString = `
+        <strong>${locationsAndStationInfos[i].name}</strong>
+        <p>Free Bikes: ${locationsAndStationInfos[i].freeBike}</p>
+        <br>
+        <button id="${buttonId}">Write a review</button>
+        `;
 
         // Adding infowindow basic code structure reference: https://developers.google.com/maps/documentation/javascript/infowindows
         const infowindow = new google.maps.InfoWindow({
@@ -74,9 +81,12 @@ function initMap(locationsAndStationInfos) {
         });
 
         marker.addListener("click", () => {
-            infowindow.open({
-                anchor: marker,
-                map,
+            infowindow.open(map, marker);
+
+            // Add a click event listener to the button inside the info window
+            const button = document.getElementById(buttonId);
+            button.addEventListener("click", () => {
+                alert("Button Clicked!");
             });
         });
 
