@@ -1,8 +1,24 @@
 {% extends "main/base.html" %}
 {% block content %}
 
-<h1>add blog post</h1>
+<h1>add review</h1>
 
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ form.title.label_tag }} {{ form.title }}
+    <select id="bike-station-country" name="bike-station-country">
+      <option value="" disabled selected>Select Country</option>
+    </select>
+    <select id="bike-station-city" name="bike-station-city">
+      <option value="" disabled selected>Select City</option>
+    </select>
+    <select id="bike-station-name" name="bike-station-name">
+      <option value="" disabled selected>Select Station</option>
+    </select>
+    <button class="btn btn-secondary" type="submit">Post</button>
+</form>
 
 
 {% endblock %}

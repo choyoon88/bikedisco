@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from review.views import get_searchstation, get_contact, get_review, get_join, get_login
+from review import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +27,5 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('review/', include('review.urls')),
     path('accounts/', include('allauth.urls')),
+    path('write_review/', views.WriteReview.as_view(), name='write_review'),
 ]

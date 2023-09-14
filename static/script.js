@@ -19,6 +19,7 @@ Promise.all(urls.map(url => fetch(url).then(response => response.json())))
     .then((dataArray) => {
         console.log("API Data:", dataArray);
         const locationsAndStationInfos = [];
+        
         dataArray.forEach(data => {
             const stations = data.network.stations;
 
@@ -72,7 +73,7 @@ function initMap(locationsAndStationInfos) {
         <strong>${locationsAndStationInfos[i].name}</strong>
         <p>Free Bikes: ${locationsAndStationInfos[i].freeBike}</p>
         <br>
-        <button id="${buttonId}">Write a review</button>
+        <button class="btn btn-outline-success" id="${buttonId}">Write a review</button>
         `;
 
         // Adding infowindow basic code structure reference: https://developers.google.com/maps/documentation/javascript/infowindows
@@ -86,14 +87,125 @@ function initMap(locationsAndStationInfos) {
             // Add a click event listener to the button inside the info window
             const button = document.getElementById(buttonId);
             button.addEventListener("click", () => {
-                alert("Button Clicked!");
+                window.open(targetUrl, "_blank");
             });
         });
 
         markers.push(marker);
+        
+        map.addListener("click", () => {
+            infowindow.close();
+        });
     }
     // Use MarkerClusterer to create marker clusters
     new MarkerClusterer(map, markers, {
         imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
     });
 }
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const countryDropdown = document.getElementById('bike-station-country');
+    const cityDropdown = document.getElementById('bike-station-city');
+    const stationDropdown = document.getElementById('bike-station-name');
+
+    function populateCountryDropdown() {
+        Promise.all(urls.map(url => fetch(url).then(response => response.json())))            
+            .then((dataArray) => {
+                dataArray.forEach(data => {
+                    const countries = data.network.location.country;
+                    countries.forEach(country => {
+                        const option = document.createElement('option');
+                        option.value = country;
+                        option.text = country;
+                        countryDropdown.appendChild(option);
+                    });
+                })
+            })
+            .catch(error => {
+                console.log('Error fetching countries:', error);
+            });
+    }
+
+    function populateCityDropdown(selectedCountry) {
+        Promise.all(urls.map(url => fetch(url).then(response => response.json())))
+            .then((dataArray) => {
+                dataArray.forEach(data => {
+                    if (data.network.location.country === selectedCountry) {
+                        const cities = data.network.location.city;
+                        cities.forEach(city => {
+                            const option = document.createElement('option');
+                            option.value = city;
+                            option.text = city;
+                            cityDropdown.appendChild(option);
+                        });
+                    }
+                })
+            })
+            .catch(error => {
+                console.log('Error fetching cities:', error);
+            });
+    }
+
+    function populateStationDropdown(selectedCity) {
+        Promise.all(urls.map(url => fetch(url).then(response => response.json())))
+            .then((dataArray) => {
+                dataArray.forEach(data => {
+                    if (data.network.location.city === selectedCity) {
+                        const stations = data.network.stations;
+                        stations.forEach(station => {
+                            const option = document.createElement('option');
+                            option.value = station.name;
+                            option.text = station.name;
+                            stationDropdown.appendChild(option);
+                        });
+                    }
+                })
+            })
+            .catch(error => {
+                console.log('Error fetching stations:', error);
+            });
+    }
+
+    populateCountryDropdown()
+
+    countryDropdown.addEventListener('change', function() {
+        const selectedCountry = countryDropdown.value;
+        if (selectedCountry) {
+            populateCityDropdown(selectedCountry);
+        } else {
+            cityDropdown.innerHTML = '<option value="" disabled selected>Select City</option>';
+            stationDropdown.innerHTML = '<option value="" disabled selected>Select Station</option>';
+        }
+    });
+
+    cityDropdown.addEventListener('change', function() {
+        const selectedCity = cityDropdown.value;
+        if (selectedCity) {
+            populateStationDropdown(selectedCity);
+        } else {
+            stationDropdown.innerHTML = '<option value="" disabled selected>Select Station</option>';
+        }
+    });
+});
+
+
+
+// let stationLocationInfo = [];
+
+// function fetchDataFromAPI(url) {
+//     return fetch(url)
+//     .then(response => response.json())
+//     .then(data => {
+//         const country = data.network.location.country;
+//         const city = data.network.location.city;
+//         const stations = data.network.stations.map(station => station.name);
+
+//         return { country, city, stations }
+//     })
+//     .catch((error) => {
+//         console.error("Error fetching location data:", error);
+//     });
+// }
+
