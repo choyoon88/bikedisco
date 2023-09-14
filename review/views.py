@@ -36,3 +36,12 @@ class PostList(generic.ListView):
     template_name = 'main/review.html'
     context_object_name = 'post_list'
     paginate_by = 6
+
+
+class WriteReview(generic.CreateView):
+    model = Post
+    template_name = 'main/post_review.html'
+    fields = 'title', 'author', 'content', 'featured_image',
+
+
+# 'bike_station_country', 'bike_station_city', 'bike_station_name',

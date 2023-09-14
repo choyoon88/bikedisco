@@ -4,4 +4,8 @@
       <p>Search a bike station, hire and go!</p>
       <div id="map" class="col-12"></div>
     </div>
+    <script>
+      // to target the post_review.html when clicking onto the 'write a review' from the infowindow
+      const targetUrl = "{% url 'write_review' %}";
+    </script>
 {% endblock %}
