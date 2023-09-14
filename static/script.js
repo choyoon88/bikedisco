@@ -103,72 +103,72 @@ function initMap(locationsAndStationInfos) {
     });
 }
 
-
-
+// Functions for creating Dropdown menu by fetching data from the API
 document.addEventListener('DOMContentLoaded', function() {
     const countryDropdown = document.getElementById('bike-station-country');
     const cityDropdown = document.getElementById('bike-station-city');
     const stationDropdown = document.getElementById('bike-station-name');
+    
+    let stationData; // Store the fetched station data
 
-    function populateCountryDropdown() {
-        Promise.all(urls.map(url => fetch(url).then(response => response.json())))            
+    function fetchStationData() {
+        Promise.all(urls.map(url => fetch(url).then(response => response.json())))
             .then((dataArray) => {
-                dataArray.forEach(data => {
-                    const countries = data.network.location.country;
-                    countries.forEach(country => {
-                        const option = document.createElement('option');
-                        option.value = country;
-                        option.text = country;
-                        countryDropdown.appendChild(option);
-                    });
-                })
+                stationData = dataArray;
+                populateCountryDropdown();
             })
             .catch(error => {
-                console.log('Error fetching countries:', error);
+                console.log('Error fetching data:', error);
             });
+    }
+
+    function populateCountryDropdown() {
+        // Extract unique country names from the station data
+        const uniqueCountries = [...new Set(stationData.flatMap(data => data.network.location.country))];
+
+        // Populate the country dropdown
+        uniqueCountries.forEach(country => {
+            const option = document.createElement('option');
+            option.value = country;
+            option.text = country;
+            countryDropdown.appendChild(option);
+        });
     }
 
     function populateCityDropdown(selectedCountry) {
-        Promise.all(urls.map(url => fetch(url).then(response => response.json())))
-            .then((dataArray) => {
-                dataArray.forEach(data => {
-                    if (data.network.location.country === selectedCountry) {
-                        const cities = data.network.location.city;
-                        cities.forEach(city => {
-                            const option = document.createElement('option');
-                            option.value = city;
-                            option.text = city;
-                            cityDropdown.appendChild(option);
-                        });
-                    }
-                })
-            })
-            .catch(error => {
-                console.log('Error fetching cities:', error);
-            });
+        // Extract unique city names based on the selected country
+        const uniqueCities = stationData
+            .filter(data => data.network.location.country === selectedCountry)
+            .flatMap(data => data.network.location.city);
+
+        // Populate the city dropdown
+        cityDropdown.innerHTML = '<option value="" disabled selected>Select City</option>';
+        uniqueCities.forEach(city => {
+            const option = document.createElement('option');
+            option.value = city;
+            option.text = city;
+            cityDropdown.appendChild(option);
+        });
     }
 
     function populateStationDropdown(selectedCity) {
-        Promise.all(urls.map(url => fetch(url).then(response => response.json())))
-            .then((dataArray) => {
-                dataArray.forEach(data => {
-                    if (data.network.location.city === selectedCity) {
-                        const stations = data.network.stations;
-                        stations.forEach(station => {
-                            const option = document.createElement('option');
-                            option.value = station.name;
-                            option.text = station.name;
-                            stationDropdown.appendChild(option);
-                        });
-                    }
-                })
-            })
-            .catch(error => {
-                console.log('Error fetching stations:', error);
-            });
+        // Extract station names based on the selected city
+        const stationNames = stationData
+            .filter(data => data.network.location.city === selectedCity)
+            .flatMap(data => data.network.stations.map(station => station.name));
+
+        // Populate the station dropdown
+        stationDropdown.innerHTML = '<option value="" disabled selected>Select Station</option>';
+        stationNames.forEach(station => {
+            const option = document.createElement('option');
+            option.value = station;
+            option.text = station;
+            stationDropdown.appendChild(option);
+        });
     }
 
-    populateCountryDropdown()
+    // Fetch the station data when the page loads
+    fetchStationData();
 
     countryDropdown.addEventListener('change', function() {
         const selectedCountry = countryDropdown.value;
@@ -189,23 +189,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-
-
-// let stationLocationInfo = [];
-
-// function fetchDataFromAPI(url) {
-//     return fetch(url)
-//     .then(response => response.json())
-//     .then(data => {
-//         const country = data.network.location.country;
-//         const city = data.network.location.city;
-//         const stations = data.network.stations.map(station => station.name);
-
-//         return { country, city, stations }
-//     })
-//     .catch((error) => {
-//         console.error("Error fetching location data:", error);
-//     });
-// }
-
