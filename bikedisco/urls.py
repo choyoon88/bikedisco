@@ -20,7 +20,7 @@ from review import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', get_searchstation, name='home'),
+    path(' ', get_searchstation, name='home'),
     path('contact/', get_contact, name='contact'),
     # path('join/', get_join, name='join'),
     # path('login/', get_login, name='login'),

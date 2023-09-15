@@ -1,4 +1,5 @@
 {% load static %}
+{% load active_link_tags %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,25 +32,28 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+              <button class="btn btn-success" id="review-btn">Write Review</button>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'review' %}">Reviews</a>
+              <a class="nav-link {% active_link 'home' 'active' %}" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% active_link 'review' 'active' %}" href="{% url 'review' %}">Reviews</a>
             </li>     
             {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+              <a class="nav-link {% active_link 'account_logout' 'active' %}" href="{% url 'account_logout' %}">Logout</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_signup' %}">Join</a>
+              <a class="nav-link {% active_link 'account_signup' 'active' %}" href="{% url 'account_signup' %}">Join</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+              <a class="nav-link {% active_link 'account_login' 'active' %}" href="{% url 'account_login' %}">Login</a>
             </li>
             {% endif %}                   
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+              <a class="nav-link {% active_link 'contact' 'active' %}" href="{% url 'contact' %}">Contact</a>
             </li>
           </ul>
         </div>
@@ -67,6 +71,7 @@
       src="https://maps.googleapis.com/maps/api/js?key={{ MAPS_API_KEY }}&callback=initMap"
     ></script>
     <script src="https://kit.fontawesome.com/b60d8311c0.js" crossorigin="anonymous"></script>
+    <script>const targetUrl = "{% url 'write_review' %}";</script>
     <footer>
       APIs are from CityBikes API Documentation
       https://api.citybik.es/v2/#net_resource

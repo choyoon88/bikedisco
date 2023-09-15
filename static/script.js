@@ -19,7 +19,7 @@ Promise.all(urls.map(url => fetch(url).then(response => response.json())))
     .then((dataArray) => {
         console.log("API Data:", dataArray);
         const locationsAndStationInfos = [];
-        
+
         dataArray.forEach(data => {
             const stations = data.network.stations;
 
@@ -33,9 +33,9 @@ Promise.all(urls.map(url => fetch(url).then(response => response.json())))
                 locationsAndStationInfos.push({
                     lat: lat,
                     lng: lng,
-                    name, 
+                    name,
                     freeBike,
-                }); 
+                });
             })
         });
 
@@ -61,7 +61,7 @@ function initMap(locationsAndStationInfos) {
 
 
     for (let i = 0; i < locationsAndStationInfos.length; i++) {
-        
+
         let marker = new google.maps.Marker({
             position: locationsAndStationInfos[i],
             label: labels[i % labels.length]
@@ -92,7 +92,7 @@ function initMap(locationsAndStationInfos) {
         });
 
         markers.push(marker);
-        
+
         map.addListener("click", () => {
             infowindow.close();
         });
@@ -104,11 +104,11 @@ function initMap(locationsAndStationInfos) {
 }
 
 // Functions for creating Dropdown menu by fetching data from the API
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const countryDropdown = document.getElementById('bike-station-country');
     const cityDropdown = document.getElementById('bike-station-city');
     const stationDropdown = document.getElementById('bike-station-name');
-    
+
     let stationData; // Store the fetched station data
 
     function fetchStationData() {
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch the station data when the page loads
     fetchStationData();
 
-    countryDropdown.addEventListener('change', function() {
+    countryDropdown.addEventListener('change', function () {
         const selectedCountry = countryDropdown.value;
         if (selectedCountry) {
             populateCityDropdown(selectedCountry);
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    cityDropdown.addEventListener('change', function() {
+    cityDropdown.addEventListener('change', function () {
         const selectedCity = cityDropdown.value;
         if (selectedCity) {
             populateStationDropdown(selectedCity);
@@ -189,3 +189,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+
+// Function to allow 'Write Review' button from the reviews page
+const reviewBtn = document.getElementById("review-btn");
+
+reviewBtn.addEventListener('click', () => {
+    window.open(targetUrl, "_blank");
+})

@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'review.apps.ReviewConfig',
     'cloudinary',
     'django_summernote',
+    'active_link',
 ]
 
 SITE_ID = 1

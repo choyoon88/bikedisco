@@ -1,7 +1,9 @@
 asgiref==3.7.2
 cloudinary==1.34.0
+coverage==7.3.1
 dj-database-url==2.1.0
 Django==3.2.21
+django-active-link==0.1.8
 django-allauth==0.56.1
 django-cloudinary-storage==0.3.0
 django-summernote==0.8.20.0
