@@ -28,6 +28,7 @@ Promise.all(urls.map(url => fetch(url).then(response => response.json())))
                 const lng = station.longitude;
                 const name = station.name;
                 const freeBike = station.free_bikes;
+                const emptySlots = station.empty_slots;
 
                 //Add coordinates and station infos to the locationsAndStationInfos array from citybike api
                 locationsAndStationInfos.push({
@@ -35,6 +36,7 @@ Promise.all(urls.map(url => fetch(url).then(response => response.json())))
                     lng: lng,
                     name,
                     freeBike,
+                    emptySlots,
                 });
             })
         });
@@ -73,7 +75,7 @@ function initMap(locationsAndStationInfos) {
         <strong>${locationsAndStationInfos[i].name}</strong>
         <p>Free Bikes: ${locationsAndStationInfos[i].freeBike}</p>
         <br>
-        <button class="btn btn-outline-success" id="${buttonId}">Write a review</button>
+        <button class="btn btn-outline-success" id="${buttonId}">Write Review</button>
         `;
 
         // Adding infowindow basic code structure reference: https://developers.google.com/maps/documentation/javascript/infowindows

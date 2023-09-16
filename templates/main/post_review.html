@@ -1,27 +1,30 @@
 {% extends "main/base.html" %}
 {% load active_link_tags %}
 
-{% load active_link_tags %}
-
 {% block content %}
 
-<h1>add review</h1>
+<h3 class="text-center">Share your thoughts about the station for better improvements!</h1>
 
-
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <select id="bike-station-country" name="bike-station-country">
-      <option value="" disabled selected>Select Country</option>
-    </select>
-    <select id="bike-station-city" name="bike-station-city">
-      <option value="" disabled selected>Select City</option>
-    </select>
-    <select id="bike-station-name" name="bike-station-name">
-      <option value="" disabled selected>Select Station</option>
-    </select>
-    <button class="btn btn-secondary" type="submit">Post</button>
-</form>
-
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mt-3 offset-md-2">
+      <form method="post">
+          {% csrf_token %}
+          
+          {{ form.as_p }}
+          <select id="bike-station-country" class="btn btn-secondary btn-sm dropdown-toggle" name="bike-station-country">
+            <option value="" disabled selected>Select Country</option>
+          </select>
+          <select id="bike-station-city" class="btn btn-secondary btn-sm dropdown-toggle" name="bike-station-city">
+            <option value="" disabled selected>Select City</option>
+          </select>
+          <select id="bike-station-name" class="btn btn-secondary btn-sm dropdown-toggle" name="bike-station-name">
+            <option value="" disabled selected>Select Station</option>
+          </select>
+          <button class="btn btn-success" type="submit">Post</button>
+      </form>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

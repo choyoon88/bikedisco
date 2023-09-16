@@ -42,6 +42,3 @@ class WriteReview(generic.CreateView):
     model = Post
     template_name = 'main/post_review.html'
     fields = 'title', 'author', 'content', 'featured_image',
-
-
-# 'bike_station_country', 'bike_station_city', 'bike_station_name',

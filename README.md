@@ -17,4 +17,5 @@
 - Google Maps API
 - [Bootstrap 5.3.1](https://getbootstrap.com/docs/5.3/)
 - Django
-- [Django Allauto](https://django-allauth.readthedocs.io/en/latest/)
+    - [Django Allauto](https://django-allauth.readthedocs.io/en/latest/)
+    - [django-active-link](https://valerymelou.com/blog/2020-05-04-how-to-highlight-active-links-in-your-django-website)

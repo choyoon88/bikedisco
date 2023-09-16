@@ -35,7 +35,7 @@
               <button class="btn btn-success" id="review-btn">Write Review</button>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% active_link 'home' 'active' %}" href="{% url 'home' %}">Home</a>
+              <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link {% active_link 'review' 'active' %}" href="{% url 'review' %}">Reviews</a>
