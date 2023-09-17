@@ -23,37 +23,37 @@
   </head>
   <body>
 
-    <!-- Top Navigation Bar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-        <a class="navbar-brand" href="{% url 'home' %}">Bike Disco</a>
+<!-- Top Navigation Bar -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mynavbar">
+        <a class="navbar-brand text-white" href="{% url 'home' %}">Bike Disco | <i class="fa-solid fa-bicycle"></i></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon navbar-dark bg-dark"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <button class="btn btn-success" id="review-btn">Write Review</button>
+              <button class="btn btn-success text-white" id="review-btn">Write Review</button>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a>
+              <a class="nav-link text-white {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% active_link 'review' 'active' %}" href="{% url 'review' %}">Reviews</a>
+              <a class="nav-link text-white {% active_link 'review' 'active' %}" href="{% url 'review' %}">Reviews</a>
             </li>     
             {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link {% active_link 'account_logout' 'active' %}" href="{% url 'account_logout' %}">Logout</a>
+              <a class="nav-link text-white {% active_link 'account_logout' 'active' %}" href="{% url 'account_logout' %}">Logout</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link {% active_link 'account_signup' 'active' %}" href="{% url 'account_signup' %}">Join</a>
+              <a class="nav-link text-white {% active_link 'account_signup' 'active' %}" href="{% url 'account_signup' %}">Join</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% active_link 'account_login' 'active' %}" href="{% url 'account_login' %}">Login</a>
+              <a class="nav-link text-white {% active_link 'account_login' 'active' %}" href="{% url 'account_login' %}">Login</a>
             </li>
             {% endif %}                   
             <li class="nav-item">
-              <a class="nav-link {% active_link 'contact' 'active' %}" href="{% url 'contact' %}">Contact</a>
+              <a class="nav-link text-white {% active_link 'contact' 'active' %}" href="{% url 'contact' %}">Contact</a>
             </li>
           </ul>
         </div>
@@ -62,6 +62,30 @@
     {% block content %}
     {% endblock %}
 
+<!-- Footer -->
+    <footer class="mt-auto text-lg-start fixed-bottom" id="myfooter">
+      <div class="container p-1 mx-auto">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-lg-6 col-md-4 mb-4 mb-md-0">
+            <p class="text-center text-white">© 2023 Bike Station Data is from the API provided by <a href="https://api.citybik.es/v2/#net_resource" target="_blank">CityBikes API</a></p>
+
+            <div class="d-flex align-items-center justify-content-center">
+              <a href="https://www.linkedin.com/in/eunae-cho-7483ba179/" target="_blank"><i class="fa-brands fa-linkedin fa-2x my-footer-links"></i></a>
+              <a href="https://github.com/choyoon88" target="_blank"><i class="fa-brands fa-github fa-2x my-footer-links"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="text-center p-3 text-white" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2023 Copyright: Eunae Cho
+      </div>
+    </footer>
+
+
+    
+  <!-- Script sources -->
     <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
@@ -71,15 +95,9 @@
       src="https://maps.googleapis.com/maps/api/js?key={{ MAPS_API_KEY }}&callback=initMap"
     ></script>
     <script src="https://kit.fontawesome.com/b60d8311c0.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap" rel="stylesheet">
     <script>const targetUrl = "{% url 'write_review' %}";</script>
-    <footer id="my-footer" class="d-flex flex-wrap justify-content-end align-items-center py-3 my-4 border-top">
-      <p class="col-md-4 mb-0 text-body-secondary">
-        APIs are from <a href="https://api.citybik.es/v2/#net_resource" target="_blank">CityBikes API</a> Documentation. 
-      </p>
-      <div id="my-links">
-        <a href="https://www.linkedin.com/in/eunae-cho-7483ba179/" target="_blank"><i class="fa-brands fa-linkedin fa-3x"></i></a>
-        <a href="https://github.com/choyoon88" target="_blank"><i class="fa-brands fa-github fa-3x"></i></a>
-      </div>     
-    </footer>
   </body>
 </html>
