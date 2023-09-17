@@ -17,15 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from review.views import get_searchstation, get_contact, get_review, get_join, get_login
 from review import views
+from profiles.views import Profile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', get_searchstation, name='home'),
     path('contact/', get_contact, name='contact'),
-    # path('join/', get_join, name='join'),
-    # path('login/', get_login, name='login'),
     path('summernote/', include('django_summernote.urls')),
     path('review/', include('review.urls')),
     path('accounts/', include('allauth.urls')),
     path('write_review/', views.WriteReview.as_view(), name='write_review'),
+    path('profiles/', Profile.as_view(), name='profile'),
 ]

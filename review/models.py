@@ -11,9 +11,6 @@ class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="review_posts")
-    # bike_station_country = models.ForeignKey(BikeStationCountry, on_delete=models.CASCADE)
-    # bike_station_city = models.ForeignKey(BikeStationCity, on_delete=models.CASCADE)
-    # bike_station_name = models.ForeignKey(BikeStationName, on_delete=models.CASCADE)
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
     featured_image = CloudinaryField('image', default='placeholder')
@@ -45,15 +42,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment {self.body} by {self.name}"
-
-
-# class BikeStationCountry(models.Model):
-#     name = models.CharField(max_length=250)
-
-# class BikeStationCity(models.Model):
-#     name = models.CharField(max_length=250)
-#     country = models.ForeignKey(BikeStationCountry, on_delete=models.CASCADE)
-
-# class BikeStationName(models.Model):
-#     name = models.CharField(max_length=250)
-#     city = models.ForeignKey(BikeStationCity, on_delete=models.CASCADE)
