@@ -34,7 +34,7 @@ MAPS_API_KEY = os.environ.get('MAPS_API_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-choyoon88-bikedisco-lhqpv4ii79x.ws-eu104.gitpod.io', 'localhost', 'bikedisco.herokuapp.com', 'bikedisco-e0cebf6eeccf.herokuapp.com', '8000-choyoon88-bikedisco-d0qosh2laea.ws-eu104.gitpod.io', '8000-choyoon88-bikedisco-nmtftqwl83u.ws-eu104.gitpod.io']
+ALLOWED_HOSTS = ['8000-choyoon88-bikedisco-lhqpv4ii79x.ws-eu104.gitpod.io', 'localhost', 'bikedisco.herokuapp.com', 'bikedisco-e0cebf6eeccf.herokuapp.com/', '8000-choyoon88-bikedisco-d0qosh2laea.ws-eu104.gitpod.io', '8000-choyoon88-bikedisco-nmtftqwl83u.ws-eu104.gitpod.io']
 
 
 # Application definition
