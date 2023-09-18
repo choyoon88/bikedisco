@@ -53,6 +53,14 @@ a.nav-link:hover {
   padding-bottom: 15rem;
 }
 
+/* alert message related */
+
+#msg-container {
+  padding: 0;
+  min-height: 0;
+}
+
+
 /* css style taken from Bootstrap 5.3.1 form-control class */
 p input, p select, p textarea {
   display: block;

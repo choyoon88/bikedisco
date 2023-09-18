@@ -21,6 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@100;400;800&display=swap" rel="stylesheet">
     <script type="module" src="{% static 'script.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>BikeDisco | Discover shared bikes and Disco!</title>
     <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
   </head>
@@ -65,6 +66,19 @@
         </div>
     </nav>
 
+    <div class="container" id="msg-container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
+              {{ message | safe }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
     {% block content %}
     {% endblock %}
 
@@ -102,5 +116,12 @@
     ></script>
     <script src="https://kit.fontawesome.com/b60d8311c0.js" crossorigin="anonymous"></script>
     <script>const targetUrl = "{% url 'write_review' %}";</script>
+    <script>
+      setTimeout(function() {
+        let messages = document.getElementById('msg');
+        let alert = new bootstrap.Alert(messages);
+        alert.close();
+      }, 3000);
+    </script>
   </body>
 </html>
