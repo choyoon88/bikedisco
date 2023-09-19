@@ -69,6 +69,13 @@ class WriteReview(generic.CreateView):
 
 def edit_review(request, slug):
     review = get_object_or_404(Post, slug=slug)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=review)
+        if form.is_valid():
+            post = form.save(commit=False)
+            form.save()
+            return redirect('review')
+
     form = PostForm(instance=review)
     success_url = reverse_lazy('review')
     return render(request, 'main/edit_review.html', {'form': form, 'review': review})
