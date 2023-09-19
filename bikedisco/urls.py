@@ -28,5 +28,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('write_review/', views.WriteReview.as_view(), name='write_review'),
     path('profiles/', Profile.as_view(), name='profile'),
-    path('edit/<slug:slug>/', edit_review, name='edit'),
+    path('edit/<slug:slug>/', edit_review, name='edit_review'),
+    path('delete/<slug:slug>', views.delete_review, name='delete_review'),
 ]

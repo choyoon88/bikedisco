@@ -80,3 +80,10 @@ def edit_review(request, slug):
     form = PostForm(instance=review)
     success_url = reverse_lazy('review')
     return render(request, 'main/edit_review.html', {'form': form, 'review': review})
+
+
+def delete_review(request, slug):
+    review = get_object_or_404(Post, slug=slug)
+    review.delete()
+    messages.success(request, 'Your review has been successfully removed.')
+    return redirect('review')
