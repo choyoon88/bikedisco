@@ -63,7 +63,7 @@ class WriteReview(generic.CreateView):
     success_url = reverse_lazy('review')
 
     def form_valid(self, form):
-        messages.success(self.request, 'Your review has been successfully updated.')
+        messages.success(self.request, 'Your review has been successfully posted.')
         return super().form_valid(form)
 
 
@@ -74,6 +74,7 @@ def edit_review(request, slug):
         if form.is_valid():
             post = form.save(commit=False)
             form.save()
+            messages.success(request, 'Your review has been successfully changed.')
             return redirect('review')
 
     form = PostForm(instance=review)
