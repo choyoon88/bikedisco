@@ -89,7 +89,7 @@ function initMap(locationsAndStationInfos) {
             // Add a click event listener to the button inside the info window
             const button = document.getElementById(buttonId);
             button.addEventListener("click", () => {
-                window.open(targetUrl, "_blank");
+                window.open(targetUrl, '_self');
             });
         });
 
@@ -197,5 +197,5 @@ document.addEventListener('DOMContentLoaded', function () {
 const reviewBtn = document.getElementById("review-btn");
 
 reviewBtn.addEventListener('click', () => {
-    window.open(targetUrl, "_blank");
+    window.open(targetUrl, '_self');
 })

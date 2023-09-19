@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from review.views import get_searchstation, get_contact, get_review, get_join, get_login
+from review.views import get_searchstation, get_contact, get_review, get_join, get_login, edit_review
 from review import views
 from profiles.views import Profile
 
@@ -28,4 +28,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('write_review/', views.WriteReview.as_view(), name='write_review'),
     path('profiles/', Profile.as_view(), name='profile'),
+    path('edit/<slug:slug>/', edit_review, name='edit'),
 ]

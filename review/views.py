@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.conf import settings
 from django.views import generic, View
-from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
+from django.contrib import messages
 from .models import Post
 from .forms import PostForm
 
@@ -39,11 +40,12 @@ def get_write_review(request):
         if form.is_valid():
             post = form.save(commit=False)
             form.save()
+            return redirect('home')
     else:
         form = PostForm()
         if 'submitted' in request.GET:
             submitted = True
-    return render(request, 'main/post_review.html', {'form': form, 'submitted': submitted})
+    return render(request, 'main/post_review.html', {'form': form})
 
 
 class PostList(generic.ListView):
@@ -58,4 +60,15 @@ class WriteReview(generic.CreateView):
     model = Post
     template_name = 'main/post_review.html'
     form_class = PostForm
-    success_url = '/review?submitted=True'
+    success_url = reverse_lazy('review')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Your review has been successfully updated.')
+        return super().form_valid(form)
+
+
+def edit_review(request, slug):
+    review = get_object_or_404(Post, slug=slug)
+    form = PostForm(instance=review)
+    success_url = reverse_lazy('review')
+    return render(request, 'main/edit_review.html', {'form': form, 'review': review})

@@ -69,8 +69,9 @@
           </div>
           <div class="modal-footer">
             {% if post.author == user %}
-            <button class="btn btn-success" type="submit">Edit</button>
+            <a href="{% url 'edit' slug=post.slug %}"><button class="btn btn-success" type="submit">Edit</button></a>
             {% endif %}
+
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
