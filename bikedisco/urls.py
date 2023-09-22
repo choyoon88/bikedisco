@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from review.views import get_searchstation, get_contact, get_review, get_join, get_login, edit_review
 from review import views
 from profiles.views import Profile
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +32,6 @@ urlpatterns = [
     path('write_review/', views.WriteReview.as_view(), name='write_review'),
     path('profiles/', Profile.as_view(), name='profile'),
     path('edit/<slug:slug>/', edit_review, name='edit_review'),
-    path('delete/<slug:slug>', views.delete_review, name='delete_review'),
-]
+    path('delete/<slug:slug>/', views.delete_review, name='delete_review'),
+    # path('<slug:slug>/', views.ReviewDetail.as_view(), name='review_detail'),
+]+ static(settings.MEDIA_URL, document_root=settings.STATIC_ROOT)

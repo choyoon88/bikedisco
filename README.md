@@ -21,3 +21,4 @@
     - [django-active-link](https://valerymelou.com/blog/2020-05-04-how-to-highlight-active-links-in-your-django-website)
 - [Google Font](https://fonts.google.com/)
 - [Fontawesome](https://fontawesome.com/)
+- [Stackoverflow](https://stackoverflow.com/) for browsing related questions

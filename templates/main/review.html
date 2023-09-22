@@ -1,5 +1,7 @@
 {% extends "main/base.html" %} 
+
 {% load active_link_tags %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -8,9 +10,9 @@
     {% for post in post_list %}
     <div class="col-sm-6 col-lg-4 col-xl-4">
       <div class="card h-100 mx-auto" style="width: 90%">
-        {% if "placeholder" in post.featured_image.url %}
+        {% if "placeholder" in post.featured_image.url %} 
         <img
-          src="../../static/images/placeholder-bike-unsplash.jpg"
+          src="https://res.cloudinary.com/dg7jrmqcp/image/upload/v1695331566/placeholder-bike-unsplash_wtse9l.jpg"
           class="card-img-top"
           alt="bicycle placeholder image"
         />
@@ -29,7 +31,9 @@
             {{ post.content|striptags|truncatechars:180 }}
           </p>
           <p class="card-text tect-muted h6 text-body-secondary">{{ post.created_on }}
-            <br><i class="fa-solid fa-thumbs-up"></i>{{ post.number_of_likes }}</p>
+            <br><i class="fa-solid fa-thumbs-up"></i>{{ post.number_of_likes }}
+            <i class="far fa-comments"></i>{{ post.comments.count }}</p>
+
         </div>
         <div class="card-footer">
           <button type="button" class="btn btn-primary float-end read-full-review" data-bs-toggle="modal" data-bs-target="#modal-{{ post.id }}">Read full review</button>
@@ -37,8 +41,8 @@
       </div>
     </div>
 
-    <!-- Modal. Modal basic code from Bootstrap doc: https://getbootstrap.com/docs/5.3/components/modal/ --> 
-    <div class="modal fade" id="modal-{{ post.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- modal -->
+    <div class="modal fade modal-lg" id="modal-{{ post.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
@@ -48,7 +52,7 @@
           <div class="modal-body">
             {% if "placeholder" in post.featured_image.url %}
             <img
-              src="../../static/images/placeholder-bike-unsplash.jpg"
+              src="https://res.cloudinary.com/dg7jrmqcp/image/upload/v1695331566/placeholder-bike-unsplash_wtse9l.jpg"
               class="card-img-top"
               alt="bicycle placeholder image"
             />
@@ -64,8 +68,42 @@
             {{ post.content|striptags }}
 
             <p class="card-text tect-muted h6 text-body-secondary">{{ post.created_on }}
-              <br><i class="fa-solid fa-thumbs-up"></i>{{ post.number_of_likes }}</p>
+              {% if user.is_authenticated %}
+              {% csrf_token %}
+                <button type="submit" name="review_id" value="{{ post.slug }}" class="my-like-btn" data-post-slug="{{ post.slug }}" data-like-count="{{post.number_of_likes}}">
+                    <i class="fa-regular fa-thumbs-up" id="like"></i>
+                </button>
             
+              {% else %}
+              <span class="text-secondary"><i class="fa-regular fa-thumbs-up"></i></span>
+              {% endif %}
+              {{ post.number_of_likes }}
+              <i class="far fa-comments"></i>{{ post.comments.count }}</p>
+            
+            <div class="col">
+              <h5>Comment:</h5>
+
+              <div class="card-body">
+                {% for comment in post.comments.all %}
+                <div class="comments" style="padding: 10px;">
+                    <p class="font-weight-bold">
+                        {{ comment.name }} wrote: {{ comment.body | linebreaks }} 
+                        <p class=" text-muted font-weight-normal">
+                          {{ comment.created_on }}
+                        </p>
+                        
+                    </p>                                     
+                    <hr> 
+                </div>
+                {% endfor %}
+            </div>
+
+              <form method="POST" style="margin-top: 1.3em;" id="comment-form">
+                {% csrf_token %}
+                {{ comment_form | crispy }}
+                <button type="submit" class="btn btn-primary" id="btn-comment">Post Comment</button>
+              </form>
+            </div>
           </div>
           <div class="modal-footer">
             {% if post.author == user %}
@@ -77,9 +115,11 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> <!-- Modal end -->
+
     {% endfor %}
   </div>
+
   {% if is_paginated %}
     <nav aria-label="Page navigation" id="paginate-bar">
         <ul class="pagination justify-content-center">

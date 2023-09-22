@@ -53,6 +53,16 @@ a.nav-link:hover {
   padding-bottom: 15rem;
 }
 
+
+/* like button */
+
+.my-like-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
 /* alert message related */
 
 #msg-container {
