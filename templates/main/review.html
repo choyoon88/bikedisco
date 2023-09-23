@@ -26,7 +26,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ post.title }}</h5>
           <p class="card-text">
-            <p>Reviewed by: {{ post.author }}</p>
+            <p><strong>REVIEWED BY</strong> {{ post.author }}</p>
             {{ post.content|striptags|truncatechars:180 }}
           </p>
           <p class="card-text tect-muted h6 text-body-secondary">{{ post.created_on }}
@@ -61,9 +61,14 @@
             />
             {% endif %}
 
-            <p>Reviewed by: {{ post.author }}</p>
-            {{ post.content|striptags }}
-
+            
+            {{ post.content|striptags }}<br>
+            <p><strong>REVIEWED BY</strong> {{ post.author }}</p>
+            <hr>
+            <strong>STATION INFO</strong><br>
+            Country - {{ post.country|striptags }} |
+            City - {{ post.city|striptags }} |
+            Station - {{ post.station_name|striptags }}
             <p class="card-text tect-muted h6 text-body-secondary">{{ post.created_on }}
               {% if user.is_authenticated %}
               {% csrf_token %}

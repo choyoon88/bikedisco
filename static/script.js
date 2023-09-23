@@ -167,6 +167,14 @@ document.addEventListener('DOMContentLoaded', function () {
             option.text = station;
             stationDropdown.appendChild(option);
         });
+
+        stationDropdown.addEventListener('change', function () {
+            const selectedStation = stationDropdown.value;
+            const selectedStationValue = document.getElementById('id_bike_station_name');
+            if (selectedStation) {
+                selectedStationValue.value = selectedStation;
+            }
+        })        
     }
 
     // Fetch the station data when the page loads
@@ -174,8 +182,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     countryDropdown.addEventListener('change', function () {
         const selectedCountry = countryDropdown.value;
+        const selectedCountryValue = document.getElementById('id_bike_station_country');
         if (selectedCountry) {
             populateCityDropdown(selectedCountry);
+            selectedCountryValue.value = selectedCountry;
         } else {
             cityDropdown.innerHTML = '<option value="" disabled selected>Select City</option>';
             stationDropdown.innerHTML = '<option value="" disabled selected>Select Station</option>';
@@ -184,12 +194,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     cityDropdown.addEventListener('change', function () {
         const selectedCity = cityDropdown.value;
+        const selectedCityValue = document.getElementById('id_bike_station_city');
         if (selectedCity) {
             populateStationDropdown(selectedCity);
+            selectedCityValue.value = selectedCity;
         } else {
             stationDropdown.innerHTML = '<option value="" disabled selected>Select Station</option>';
         }
     });
+
 });
 
 
@@ -201,24 +214,4 @@ reviewBtn.addEventListener('click', () => {
 })
 
 
-// Function to handle like button click
-// function handleLikeButtonClick(button) {
-//     const postSlug = button.dataset.postSlug;
-//     const likeCount = parseInt(button.dataset.likeCount);
 
-//     const liked = !button.classList.contains('liked');
-//     button.classList.toggle('liked', liked);
-//     button.querySelector('i.fa-thumbs-up').classList.toggle('fa-solid', liked);
-
-//     const likeCountElement = document.querySelector(`#like-count-${postSlug}`);
-//     if (likeCountElement) {
-//         likeCountElement.textContent = liked ? likeCount + 1 : likeCount - 1;
-//     }
-// }
-
-// const likeButtons = document.querySelectorAll('.my-like-btn');
-// likeButtons.forEach(button => {
-//     button.addEventListener('click', () => {
-//         handleLikeButtonClick(button);
-//     });
-// });

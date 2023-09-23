@@ -43,6 +43,9 @@ def get_write_review(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
+            post.country = form.cleaned_data['bike_station_country']
+            post.city = form.cleaned_data['bike_station_city']
+            post.station_name = form.cleaned_data['bike_station_name']
             form.save()
             messages.success(request, 'Your review has been successfully posted.')
             return redirect('review')
@@ -67,6 +70,9 @@ def edit_review(request, slug):
         form = PostForm(request.POST, request.FILES, instance=review)
         if form.is_valid():
             post = form.save(commit=False)
+            post.country = form.cleaned_data['bike_station_country']
+            post.city = form.cleaned_data['bike_station_city']
+            post.station_name = form.cleaned_data['bike_station_name']
             form.save()
             messages.success(request, 'Your review has been successfully changed.')
             return redirect('review')
