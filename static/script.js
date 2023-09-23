@@ -202,23 +202,23 @@ reviewBtn.addEventListener('click', () => {
 
 
 // Function to handle like button click
-function handleLikeButtonClick(button) {
-    const postSlug = button.dataset.postSlug;
-    const likeCount = parseInt(button.dataset.likeCount);
+// function handleLikeButtonClick(button) {
+//     const postSlug = button.dataset.postSlug;
+//     const likeCount = parseInt(button.dataset.likeCount);
 
-    const liked = !button.classList.contains('liked');
-    button.classList.toggle('liked', liked);
-    button.querySelector('i.fa-thumbs-up').classList.toggle('fa-solid', liked);
+//     const liked = !button.classList.contains('liked');
+//     button.classList.toggle('liked', liked);
+//     button.querySelector('i.fa-thumbs-up').classList.toggle('fa-solid', liked);
 
-    const likeCountElement = document.querySelector(`#like-count-${postSlug}`);
-    if (likeCountElement) {
-        likeCountElement.textContent = liked ? likeCount + 1 : likeCount - 1;
-    }
-}
+//     const likeCountElement = document.querySelector(`#like-count-${postSlug}`);
+//     if (likeCountElement) {
+//         likeCountElement.textContent = liked ? likeCount + 1 : likeCount - 1;
+//     }
+// }
 
-const likeButtons = document.querySelectorAll('.my-like-btn');
-likeButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        handleLikeButtonClick(button);
-    });
-});
+// const likeButtons = document.querySelectorAll('.my-like-btn');
+// likeButtons.forEach(button => {
+//     button.addEventListener('click', () => {
+//         handleLikeButtonClick(button);
+//     });
+// });
