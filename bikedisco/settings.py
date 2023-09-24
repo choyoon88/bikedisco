@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'profiles',
     'contactus',
+    'phonenumber_field',
 ]
 
 SITE_ID = 1

@@ -39,7 +39,7 @@ def get_login(request):
 def get_write_review(request):
     submitted = False
     if request.method == "POST":
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user

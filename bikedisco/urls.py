@@ -19,18 +19,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from review.views import get_searchstation, get_contact, get_review, get_join, get_login, edit_review, get_write_review
 from review import views
-from profiles.views import Profile
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', get_searchstation, name='home'),
     path('contact/', get_contact, name='contact'),
     path('summernote/', include('django_summernote.urls')),
+    path('profiles/', include('profiles.urls')),
     path('review/', include('review.urls')),
     path('accounts/', include('allauth.urls')),
-    path('write_review/', get_write_review, name='write_review'),
-    path('profiles/', Profile.as_view(), name='profile'),
-    path('edit/<slug:slug>/', edit_review, name='edit_review'),
-    path('delete/<slug:slug>/', views.delete_review, name='delete_review'),
-]+ static(settings.MEDIA_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.STATIC_ROOT)

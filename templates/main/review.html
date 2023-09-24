@@ -66,9 +66,9 @@
             <p><strong>REVIEWED BY</strong> {{ post.author }}</p>
             <hr>
             <strong>STATION INFO</strong><br>
-            Country - {{ post.country|striptags }} |
-            City - {{ post.city|striptags }} |
-            Station - {{ post.station_name|striptags }}
+            <strong>Country</strong> - {{ post.country|striptags }} |
+            <strong>City</strong> - {{ post.city|striptags }} |
+            <strong>Station</strong> - {{ post.station_name|striptags }}
             <p class="card-text tect-muted h6 text-body-secondary">{{ post.created_on }}
               {% if user.is_authenticated %}
               {% csrf_token %}
