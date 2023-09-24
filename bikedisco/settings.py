@@ -74,6 +74,8 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
+PHONENUMBER_DB_FORMAT = 'INTERNATIONAL'
+
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
     messages.INFO: 'alert-info',

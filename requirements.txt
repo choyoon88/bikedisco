@@ -13,6 +13,7 @@ django-summernote==0.8.20.0
 gunicorn==21.2.0
 oauthlib==3.2.2
 phonenumbers==8.13.21
+phonenumberslite==8.13.21
 Pillow==10.0.1
 psycopg2==2.9.7
 psycopg2-binary==2.9.7

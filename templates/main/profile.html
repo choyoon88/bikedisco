@@ -10,19 +10,12 @@
     <div class="col-md-8 mt-3 offset-md-2">
       <div>
         <p><strong class="fw-bold">User ID:</strong> {{ user.profile.user }}</p>
+        <p><strong class="fw-bold">Email:</strong> {{ user.profile.email }}</p>
         <p><strong class="fw-bold">First Name:</strong> {{ user.profile.firstname }}</p>
         <p><strong class="fw-bold">Last Name:</strong> {{ user.profile.lastname }}</p>
-        <p><strong class="fw-bold">Phone Number:</strong> {{ user.profile.phone_number }}</p>
-        <p><strong class="fw-bold">Email:</strong> {{ user.profile.email }}</p>
-        <p><strong class="fw-bold">Reviewed:</strong></p>
-        <a href="#"><button class="btn btn-secondary" type="submit">Edit My Profile</button></a>
-            <ul>
-                {% for post in user.profile.reviewed.all %}
-                    <li>{{ post.title }}</li>
-                {% empty %}
-                    <p>You do not have any reviews posted.</p>
-                {% endfor %}
-            </ul>
+        <p><strong class="fw-bold">Phone Number:</strong> {{ user.profile.phone_number }}</p>        
+        <a href="{% url 'edit_profile' %}"><button class="btn btn-secondary" type="submit">Edit My Profile</button></a>
+        <hr>
       </div>
     </div>
   </div>
