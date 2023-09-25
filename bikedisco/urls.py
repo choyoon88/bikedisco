@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from review.views import get_searchstation, get_review, get_join, get_login, edit_review, get_write_review
+from review.views import get_searchstation
+# get_review, get_join, get_login, edit_review, get_write_review
 from review import views
 
 urlpatterns = [

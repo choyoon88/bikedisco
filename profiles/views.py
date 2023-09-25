@@ -23,13 +23,18 @@ def edit_profile(request):
 
         if profile_form.is_valid():
             profile_form.save()
-            messages.success(request, 'Your profile has been successfully updated.')
+            messages.success(
+                request,
+                'Your profile has been successfully updated.')
             return redirect('profile')
 
     else:
         profile_form = EditProfile(instance=request.user.profile)
 
-    return render(request, 'main/edit_profile.html', {'profile_form': profile_form})
+    return render(
+        request,
+        'main/edit_profile.html',
+        {'profile_form': profile_form})
 
 
 class DeleteAccount(SuccessMessageMixin, generic.DeleteView):

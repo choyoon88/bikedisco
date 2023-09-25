@@ -6,9 +6,21 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    firstname = models.CharField(max_length=50, blank=True, default='Enter your first name')
-    lastname = models.CharField(max_length=50, blank=True, default='Enter your last name')
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name='profile'
+        )
+    firstname = models.CharField(
+        max_length=50,
+        blank=True,
+        default='Enter your first name'
+        )
+    lastname = models.CharField(
+        max_length=50,
+        blank=True,
+        default='Enter your last name'
+        )
     phone_number = PhoneNumberField(blank=True)
     email = models.EmailField()
 

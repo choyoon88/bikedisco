@@ -9,7 +9,9 @@ def get_contact(request):
         contact_form = ContactForm(request.POST)
         if contact_form.is_valid():
             contact_form.save()
-            messages.success(request, 'Thank you for contacting us. We will get back to you soon.')
+            messages.success(
+                request,
+                'Thank you for contacting us. We will get back to you soon.')
             return redirect('home')
     else:
         contact_form = ContactForm()
