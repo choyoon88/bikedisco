@@ -18,8 +18,6 @@ class Post(models.Model):
     excerpt = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=1)
-    likes = models.ManyToManyField(User, related_name='review_likes', blank=True)
-
     country = models.CharField(max_length=100, null=True)
     city = models.CharField(max_length=100, null=True)
     station_name = models.CharField(max_length=100, null=True)

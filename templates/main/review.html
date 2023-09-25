@@ -4,6 +4,8 @@
 
 {% block content %}
 
+{% if review %}
+
 <div class="container custom-container mb-5 mx-auto">
   <div class="row row-cols-1 row-cols-md-2 g-4">
     {% for post in post_list %}
@@ -70,15 +72,6 @@
             <strong>City</strong> - {{ post.city|striptags }} |
             <strong>Station</strong> - {{ post.station_name|striptags }}
             <p class="card-text tect-muted h6 text-body-secondary">{{ post.created_on }}
-              {% if user.is_authenticated %}
-              {% csrf_token %}
-                <button type="submit" name="review_id" value="{{ post.slug }}" class="my-like-btn" data-post-slug="{{ post.slug }}" data-like-count="{{post.number_of_likes}}">
-                    <i class="fa-regular fa-thumbs-up" id="like"></i>
-                </button>
-            
-              {% else %}
-              <span class="text-secondary"><i class="fa-regular fa-thumbs-up"></i></span>
-              {% endif %}
 
           </div>
           <div class="modal-footer">
@@ -115,5 +108,17 @@
     </nav>
     {% endif %}
 </div>
+
+
+{% else %}
+<div class="container mx-auto mb-5">
+  <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+    <div class="m-4 m-lg-5">
+      <h1 class="display-9 fw-bold">There is no review to display. Be the first reviewer!</h1> 
+    </div>
+  </div>
+</div>
+
+{% endif %}
 {% endblock %}
 
