@@ -20,6 +20,8 @@ from django.conf.urls.static import static
 from review.views import get_searchstation
 # get_review, get_join, get_login, edit_review, get_write_review
 from review import views
+from .views import handling_404
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,3 +32,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('contact/', include('contactus.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.STATIC_ROOT)
+
+handler404 = handling_404
