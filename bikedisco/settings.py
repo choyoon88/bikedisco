@@ -33,7 +33,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 MAPS_API_KEY = os.environ.get('MAPS_API_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
