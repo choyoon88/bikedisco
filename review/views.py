@@ -19,10 +19,6 @@ def get_searchstation(request):
     return render(request, 'main/searchstation.html')
 
 
-def get_contact(request):
-    return render(request, 'main/contact.html')
-
-
 def get_review(request):
     return render(request, 'main/review.html')
 

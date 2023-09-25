@@ -17,15 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from review.views import get_searchstation, get_contact, get_review, get_join, get_login, edit_review, get_write_review
+from review.views import get_searchstation, get_review, get_join, get_login, edit_review, get_write_review
 from review import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', get_searchstation, name='home'),
-    path('contact/', get_contact, name='contact'),
     path('summernote/', include('django_summernote.urls')),
     path('profiles/', include('profiles.urls')),
     path('review/', include('review.urls')),
     path('accounts/', include('allauth.urls')),
+    path('contact/', include('contactus.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.STATIC_ROOT)
