@@ -37,7 +37,13 @@ DEBUG = False
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-ALLOWED_HOSTS = ['8000-choyoon88-bikedisco-lhqpv4ii79x.ws-eu104.gitpod.io', 'localhost', 'bikedisco.herokuapp.com', 'bikedisco-e0cebf6eeccf.herokuapp.com', '8000-choyoon88-bikedisco-d0qosh2laea.ws-eu104.gitpod.io', '8000-choyoon88-bikedisco-nmtftqwl83u.ws-eu104.gitpod.io']
+ALLOWED_HOSTS = [
+    '8000-choyoon88-bikedisco-lhqpv4ii79x.ws-eu104.gitpod.io',
+    'localhost',
+    'bikedisco.herokuapp.com',
+    'bikedisco-e0cebf6eeccf.herokuapp.com',
+    '8000-choyoon88-bikedisco-d0qosh2laea.ws-eu104.gitpod.io',
+    '8000-choyoon88-bikedisco-nmtftqwl83u.ws-eu104.gitpod.io']
 
 
 # Application definition
@@ -138,16 +144,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+        'UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+        'MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+        'CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+        'NumericPasswordValidator',
     },
 ]
 
@@ -170,7 +180,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+STATICFILES_STORAGE = (
+    'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+)
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 

@@ -11,4 +11,11 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ['title', 'content', 'featured_image', 'bike_station_country', 'bike_station_city', 'bike_station_name']
+        fields = [
+            'title',
+            'content',
+            'featured_image',
+            'bike_station_country',
+            'bike_station_city',
+            'bike_station_name'
+            ]

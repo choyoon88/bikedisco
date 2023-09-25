@@ -12,7 +12,10 @@ from .forms import PostForm
 
 def get_map(request):
     MAPS_API_KEY = settings.MAPS_API_KEY
-    return render(request, 'main/searchstation.html', {MAPS_API_KEY: MAPS_API_KEY})
+    return render(
+        request,
+        'main/searchstation.html',
+        {MAPS_API_KEY: MAPS_API_KEY})
 
 
 def get_searchstation(request):
@@ -43,7 +46,9 @@ def get_write_review(request):
             post.city = form.cleaned_data['bike_station_city']
             post.station_name = form.cleaned_data['bike_station_name']
             form.save()
-            messages.success(request, 'Your review has been successfully posted.')
+            messages.success(
+                request,
+                'Your review has been successfully posted.')
             return redirect('review')
     else:
         form = PostForm()
@@ -70,12 +75,17 @@ def edit_review(request, slug):
             post.city = form.cleaned_data['bike_station_city']
             post.station_name = form.cleaned_data['bike_station_name']
             form.save()
-            messages.success(request, 'Your review has been successfully changed.')
+            messages.success(
+                request,
+                'Your review has been successfully changed.')
             return redirect('review')
 
     form = PostForm(instance=review)
     success_url = reverse_lazy('review')
-    return render(request, 'main/edit_review.html', {'form': form, 'review': review})
+    return render(
+        request,
+        'main/edit_review.html',
+        {'form': form, 'review': review})
 
 
 def delete_review(request, slug):
