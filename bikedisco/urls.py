@@ -18,9 +18,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from review.views import get_searchstation
-# get_review, get_join, get_login, edit_review, get_write_review
 from review import views
-from .views import handling_404
+from .views import handling_404, handling_500, handling_403
 
 
 urlpatterns = [
@@ -34,3 +33,5 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.STATIC_ROOT)
 
 handler404 = handling_404
+handler500 = handling_500
+handler403 = handling_403
