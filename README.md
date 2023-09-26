@@ -145,6 +145,39 @@ subject | TextField | |
 
 ## Validation
 
+### HTML check
+
+- Conduncted every HTML codes on [The W3C Markup Validation Service](https://validator.w3.org/#validate_by_input)
+
+- Ignore all error messages related about missing !doctype on the top since we are loading static. 
+
+
+### JShint
+
+- Conducted [JShint](https://jshint.com/) validation check for script.js codes.
+
+![jshint-01](static/images/readme-images/jshint-01.png)
+
+- Fixed serveral missing semicolon issues.
+
+- Two warnings 
+    - These will not be fixed since they are related with Google Maps JavaScript code. 
+```
+86	Functions declared within loops referencing an outer scoped variable may lead to confusing semantics. (map, marker, buttonId, targetUrl)
+103	Do not use 'new' for side effects.
+```
+
+- Three undefined variables
+    - These will not be fixed neither, since `google` and `MarkerClusterer` is both from Google Maps JavaScript code. 
+    - `targetUrl` is under serachstation.html script, so will not be fixed in script.js file.
+```
+53	google
+67	google
+82	google
+92	targetUrl
+213	targetUrl
+103	MarkerClusterer
+```
 
 ## WAVE (Accessibility check)
 

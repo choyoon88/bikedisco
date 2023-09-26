@@ -13,7 +13,7 @@ const urls = [
     "https://api.citybik.es/v2/networks/santander-cycles",
     "https://api.citybik.es/v2/networks/co-bikes-exeter",
     "https://api.citybik.es/v2/networks/belfastbikes-belfast",
-]
+];
 
 Promise.all(urls.map(url => fetch(url).then(response => response.json())))
     .then((dataArray) => {
@@ -38,7 +38,7 @@ Promise.all(urls.map(url => fetch(url).then(response => response.json())))
                     freeBike,
                     emptySlots,
                 });
-            })
+            });
         });
 
         initMap(locationsAndStationInfos);
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (selectedStation) {
                 selectedStationValue.value = selectedStation;
             }
-        })        
+        });   
     }
 
     // Fetch the station data when the page loads
@@ -211,7 +211,7 @@ const reviewBtn = document.getElementById("review-btn");
 
 reviewBtn.addEventListener('click', () => {
     window.open(targetUrl, '_self');
-})
+});
 
 
 
