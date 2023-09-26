@@ -27,13 +27,76 @@ BikeDisco is a public bicycle station application that provides station location
 
 # User Experience
 ## Target Audience
+- People who likes to use the shared bicycle in Ireland and UK. 
+- People who wants to know the real time information of bicycle stations in Ireland and UK.
+- People who wants read/share experience after using the shared bicycle station. 
 
 ## User Expectations
 - Application showing clear purpose.
 - Easy interface that allows quick and efficient navigation.
 
 ## User Stories
+- Dividied the user stories according to the sections; homepage, reviews, profile and contact.
 
+### HOME PAGE
+
+- Home page should be easy to understand what the website is going to service. It should have the below assets.
+
+**Google Maps**
+
+- Google Maps that consists the markers for the shared bike stations. 
+- Google maps are the main asset for the home page.
+- When the user clicks the station marker, the marker should show the info window that contains the name of the station and the available bike numbers.
+- On the info window the user could click on a button to write a review of the station.
+- If the user is unregistered then the button will ask them to sign in.
+- As a registered user, the user should be able to write a review of the station.
+
+**Top Link Bar**
+
+- on the top-left hand side, the title of the website should be placed. The title links to the homepage.
+- On the top-right hand side, the link bar should be placed. Link bar menus should look slightly different to the users who are unregistered and registered.
+- As a unregistered user, the menu bar should have home, review, login, join and contact.
+- As a registered user, the menu bar should have home, review, my pagem logout and contact.
+
+### REVIEWS
+
+- Reviews page will have every reviews written by registered users. The reviews will be shown in a descending order (new one first).
+- When the user clicks the review, the full review will be shown on a modal.
+- As a site user, I can enter reviews page so that I can read the written reviews.
+- As a registered user, I can click 'write review' so that I can write a review.
+- As a registered user also a review author, I can view and click edit/delete button, so that I can edit/delete my reviews.
+- As an unregistered user, I can click on 'write review', so that I can be asked to sign in the website. 
+- (good to have) As a registered user, I can filter the reviews according to the country and the city so that I can only see the reviews for the specific country or the city. - (good to have) - As a review author, I can select specific bike station so that I can write a review for the targeted station.
+
+### PROFILE
+
+- Profile is for registered users only. They could view their data such as user id, name, email address, phone number. They could edit their data and also delete their account. 
+- As a registered user, I could see my id first name, last name, email address and the list of reviews that i have written.
+- As a registered user, I could edit my first name, last name and email address, so that I can update it to a new data.
+- (good to have) As a registered user, I could click my reviews, so that I can view/edit/delete the reviews.
+- As a registered user, I could delete my account, so that I can leave from the registered user.
+- As a registered user, I could change my password, so that I can secure my account.
+
+### CONTACT
+
+- Contact page will be the page for the user to contact the admin of the website to provide feedback or questions. 
+- Anyone could write this form. 
+- The actuale email sending function is not implemented yet since this project is not aiming for that, but the users will still get the alert message that saying 'Thank you for contacting us. We will get back to you soon.'
+- As a site user, I can access Contact page and write down the form, so that I can reach out to the admin. 
+
+
+
+# Design
+
+## Font 
+
+Using 'Sarabun' supplied by Google Font and sans-serif as a backup when the browser is not supporting Sarabun.
+
+<details>
+<summary>See font</summary>
+
+![See Font](static/images/readme-images/font-sarabun.png)
+</details>
 
 # Database
 
