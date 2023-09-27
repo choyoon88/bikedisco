@@ -1,9 +1,6 @@
 # BikeDisco
 ![amiresponsive](static/images/readme-images/bd-responsive.png)
 
-## Table of Content
-
-1. About
 
 # About
 
@@ -69,6 +66,7 @@ BikeDisco is a public bicycle station application that provides station location
 
 **Google Maps**
 
+- Google Maps is currently using developer version since I do not have the paid account for using Google Maps API. Still the functions are working it is not a major blocker of using the site. 
 - Google Maps that consists the markers for the shared bike stations. 
 - Google maps is the main asset for the home page.
 - When the user clicks the station marker, the marker should show the info window that contains the name of the station and the available bike numbers.
@@ -103,13 +101,177 @@ BikeDisco is a public bicycle station application that provides station location
 
 # CRUD Functionality 
 
-- Authenticated user has full CRUD functionality available for the review. User can write the review, read the review, edit the review and last but not least delete the review. 
+## Review
+
+Authenticated user has full CRUD functionality available for the review. User can write the review, read the review, edit the review and last but not least delete the review. 
+
+### Create
+
+Authenticated user can write review by clicking 'write review' from the top menu bar. 
+
+Once they submit, an alert message will let them know your review has been added. 
 
 <details>
-<summary>See Create Review</summary>
-![createreview]()
+<summary>See Create Review GIF</summary>
+
+![createreviewgif](static/images/readme-images/createreview.gif)
 
 </details>
+
+<details>
+<summary>See Review Submit Popup Screenshot</summary>
+
+![reviewpostpopup](static/images/readme-images/crud-reviewpost-popup.png)
+
+</details>
+
+### Read
+
+Authenticated user can read their review also other reviews that have been posted by other authenticated users. 
+
+<details>
+<summary>See Read Review GIF</summary>
+
+![readreviewgif](static/images/readme-images/crud-readreview.gif)
+
+</details>
+
+<details>
+<summary>See Read Review Screenshot</summary>
+
+![readreview](static/images/readme-images/crud-readreview02.png)
+
+</details>
+
+
+### Update
+
+Authenticated user can update/edit their own reviews. 
+
+
+<details>
+<summary>See Edit Review GIF</summary>
+
+![editreviewgif](static/images/readme-images/crud-editreview.gif)
+
+</details>
+
+<details>
+<summary>See Edit Review Popup Screenshot</summary>
+
+![editreview](static/images/readme-images/crud-editreview02.png)
+
+</details>
+
+### Delete
+
+Authenticated user can delete their review. 
+
+<details>
+<summary>See Review Delete GIF</summary>
+
+![deletereviewgif](static/images/readme-images/crud-deletereview.gif)
+
+</details>
+
+<details>
+<summary>See Delete Review Popup</summary>
+
+![delrev](static/images/readme-images/crud-deletereview02.png)
+
+</details>
+
+
+## Comment
+
+Authenticated user can write, read and delele comments. 
+
+#### Create
+
+Authenticated user can write a comment on the review modal. 
+
+<details>
+<summary>See Post Comment GIF</summary>
+
+![writecomment](static/images/readme-images/crud-writecomment.gif)
+
+</details>
+
+
+#### Read 
+
+User can read comments on a review modal by clicking on the 'Read full review' on Reviews page. 
+
+<details>
+<summary>See Read Comment Screenshot</summary>
+
+![readcomment](static/images/readme-images/crud-readcomment.png)
+
+</details>
+
+
+#### Delete
+
+Comment writter can delete their comments. Only the comment writter will be able to see the trashcan icon next to their own comment on the review modal.
+
+<details>
+<summary>See delete comment GIF</summary>
+
+![deletecommentgif](static/images/readme-images/crud-deletecomment.gif)
+
+</details>
+
+
+<details>
+<summary>See delete comment popup screenshot</summary>
+
+![deletecom](static/images/readme-images/crud-deletecomment02.png)
+
+</details>
+
+
+### Profile
+
+User can create, read, update and delete their account.
+
+<details>
+<summary>See Profile Create</summary>
+
+![pcreate](static/images/readme-images/crud-profilecreate.png)
+
+</details>
+
+
+<details>
+<summary>See Profile Read</summary>
+
+![pread](static/images/readme-images/crud-profileread.png)
+
+</details>
+
+
+<details>
+<summary>See Profile Edit</summary>
+
+![pedit](static/images/readme-images/crud-profileedit01.png)
+
+</details>
+
+<details>
+<summary>See Profile Delete</summary>
+
+![pdelete](static/images/readme-images/crud-profileremv.png)
+
+</details>
+
+<details>
+<summary>See Profile After Delete</summary>
+
+![pdelete](static/images/readme-images/crud-profileremv02.png)
+
+</details>
+
+
 
 # Design
 
@@ -142,6 +304,8 @@ Using 'Sarabun' supplied by Google Font and sans-serif as a backup when the brow
 
 ### Post Model
 
+- Post model is used for each review uploaded by the user. It has a foreign key for author which is extended by User model. It uses slug field to create a unique id for each review. Also country, city and the station_name data is fetched from the CityBike API which will be used to populate the drop down menu for the user's to select the station info when posting a review.
+
 | Name | Field Type | Validation |
 | :---:   | :---: | :---: |
 | title | CharField | max_length=200, unique=True |
@@ -159,6 +323,8 @@ station_name | CharField | max_length=100, null=True |
 
 ### Comment Model
 
+- Comment model is used for comments on each review modal. Two foreign key; post and user is used to be linked with the Post and User models. 
+
 | Name | Field Type | Validation |
 | :---:   | :---: | :---: |
 | post | ForeignKey | Post, on_delete=models.CASCADE, related_name='comment' |
@@ -167,6 +333,8 @@ station_name | CharField | max_length=100, null=True |
 | created_on | DataTimeField | auto_now_add=True |
 
 ### Profile Model
+
+- Profile model is used for authenticated user's profile data. 
 
 | Name | Field Type | Validation |
 | :---:   | :---: | :---: |
@@ -177,6 +345,8 @@ phone_number | PhoneNumberField | blank=True |
 email | EmailField | |
 
 ### Contact Model
+
+- Contact Model is used to populate the Contact form on Contact model. These data will be stored in our database when the user submits the contact form. 
 
 | Name | Field Type | Validation |
 | :---:   | :---: | :---: |
@@ -233,10 +403,11 @@ subject | TextField | |
 - No errors were found. 
 
 
-## WAVE (Accessibility check)
+### WAVE (Accessibility check)
 
-## Deployment 
+# Deployment 
 
+## Create
 
 
 ## Credits and References
