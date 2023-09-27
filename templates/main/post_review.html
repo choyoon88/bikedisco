@@ -12,6 +12,7 @@
       <form method="POST" enctype="multipart/form-data">
           {% csrf_token %} 
           {{ form.as_p }}
+          <p>Select the station info from the drop down menu, then it will be filled in automatically on the top.</p>
           <select id="bike-station-country" class="btn btn-secondary btn-sm dropdown-toggle" name="bike-station-country">
             <option value="" disabled selected>Select Country</option>
           </select>
