@@ -37,7 +37,31 @@ BikeDisco is a public bicycle station application that provides station location
 - Interact with other users by writing reviews and also adding comments on the reviews.
 
 ## User Stories
-- Dividied the user stories according to the sections; homepage, reviews, profile and contact.
+
+1. As a site user I want the navigation to be intuitive and user friendly so that I can navigate the app easily
+2. As a site user I want to navigate through the Google Maps so that I can check the location of the bicycle station in Ireland and UK.
+3. As a site user I want to check the avaiable number of bicycles on Google Maps info window.
+4. As a site user I can join the website as an authenticated user. 
+5. As a site user I can access Contact page so that I can contact the admin to provide my opinion or feedback of the website. 
+6. As a site user I can access Reviews page so that I can read the reviews that were posted by authenticated users. 
+7. As an authenticated user I can write review so that I can share my thoughts of the bicycle stations. 
+8. As an authenticated user and a review author I can edit/delete the review that I have posted so that I can amend my reviews.
+9. As an authenticated user I can login to the website. 
+10. As an authenticated user I can write comments on the posted review modal so that I can share my thoughts of the review. 
+11. As an authenticated user and a comment writter I can delete my comment so that I can remove my thoughts about the review.
+12. As an authenticated user I can access Profile page so that I can check my ID, email address, first name, last name and phone number. 
+13. As an authenticated user I can access edit from Profile page so that I can change my first name, last name, email and phone number. 
+14. As an authenticated user I can access Logout page so that I can log out from the site. 
+
+## Site Owner Stories
+
+1. As a site owner I can restrict sections of apps to unauthenticated users so that I can meet the basic data protection standards.
+2. As a site owner I would like the authenticated users to have full access on using the apps on the website.
+3. As a site owner I would like the site users to submit a contact form so that I can get feedbacks of the website.
+4. As a site owner I would like that authenticated users have full access to CRUD(Create, Read, Update, Delete) functionalities when using the website. 
+
+
+## Project Structure
 
 ### HOME PAGE
 
@@ -46,48 +70,57 @@ BikeDisco is a public bicycle station application that provides station location
 **Google Maps**
 
 - Google Maps that consists the markers for the shared bike stations. 
-- Google maps are the main asset for the home page.
+- Google maps is the main asset for the home page.
 - When the user clicks the station marker, the marker should show the info window that contains the name of the station and the available bike numbers.
 - On the info window the user could click on a button to write a review of the station.
-- If the user is unregistered then the button will ask them to sign in.
-- As a registered user, the user should be able to write a review of the station.
+- If unauthenticated user clicks the 'write review' button they will be brought to sign in page.
 
 **Top Link Bar**
 
-- on the top-left hand side, the title of the website should be placed. The title links to the homepage.
-- On the top-right hand side, the link bar should be placed. Link bar menus should look slightly different to the users who are unregistered and registered.
-- As a unregistered user, the menu bar should have home, review, login, join and contact.
-- As a registered user, the menu bar should have home, review, my pagem logout and contact.
+- On the top-left hand side, the title of the website should be placed. The title links to the homepage.
+- On the top-right hand side, the link bar should be placed. Link bar menu should look slightly different to the users between unauthenticated and authenticated.
+- As an unauthenticated user, the menu bar should have home, review, login, join and contact.
+- As an authenticated user, the menu bar should have home, review, my page, logout and contact.
 
 ### REVIEWS
 
 - Reviews page will have every reviews written by registered users. The reviews will be shown in a descending order (new one first).
 - When the user clicks the review, the full review will be shown on a modal.
-- As a site user, I can enter reviews page so that I can read the written reviews.
-- As a registered user, I can click 'write review' so that I can write a review.
-- As a registered user also a review author, I can view and click edit/delete button, so that I can edit/delete my reviews.
-- As an unregistered user, I can click on 'write review', so that I can be asked to sign in the website. 
-- (good to have) As a registered user, I can filter the reviews according to the country and the city so that I can only see the reviews for the specific country or the city. - (good to have) - As a review author, I can select specific bike station so that I can write a review for the targeted station.
+
 
 ### PROFILE
 
 - Profile is for registered users only. They could view their data such as user id, name, email address, phone number. They could edit their data and also delete their account. 
-- As a registered user, I could see my id first name, last name, email address and the list of reviews that i have written.
-- As a registered user, I could edit my first name, last name and email address, so that I can update it to a new data.
-- (good to have) As a registered user, I could click my reviews, so that I can view/edit/delete the reviews.
-- As a registered user, I could delete my account, so that I can leave from the registered user.
-- As a registered user, I could change my password, so that I can secure my account.
+
 
 ### CONTACT
 
 - Contact page will be the page for the user to contact the admin of the website to provide feedback or questions. 
 - Anyone could write this form. 
-- The actuale email sending function is not implemented yet since this project is not aiming for that, but the users will still get the alert message that saying 'Thank you for contacting us. We will get back to you soon.'
-- As a site user, I can access Contact page and write down the form, so that I can reach out to the admin. 
+- The actual email sending function is not implemented yet since this project is not aiming for that, but the submitted form will be sent to the database and admin will be able to read it. 
+- Also the users will still get the alert message that saying 'Thank you for contacting us. We will get back to you soon.'
 
 
+# CRUD Functionality 
+
+- Authenticated user has full CRUD functionality available for the review. User can write the review, read the review, edit the review and last but not least delete the review. 
+
+<details>
+<summary>See Create Review</summary>
+![createreview]()
+
+</details>
 
 # Design
+
+## Color Scheme
+Color scheme is from [Coolor](https://coolors.co/)
+
+<details>
+<summary>See Color Palette</summary>
+
+![colorscheme](static/images/readme-images/colorscheme.png)
+</details>
 
 ## Font 
 
@@ -98,6 +131,7 @@ Using 'Sarabun' supplied by Google Font and sans-serif as a backup when the brow
 
 ![See Font](static/images/readme-images/font-sarabun.png)
 </details>
+
 
 # Database
 
