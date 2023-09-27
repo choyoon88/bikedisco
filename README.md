@@ -230,7 +230,7 @@ Comment writter can delete their comments. Only the comment writter will be able
 </details>
 
 
-### Profile
+## Profile
 
 User can create, read, update and delete their account.
 
@@ -282,6 +282,7 @@ User can create, read, update and delete their account.
 # Design
 
 ## Color Scheme
+Used light brown colour on the background to reduce stressed eye and dark theme on the nav and the footer for better visibility on the main content. 
 Color scheme is from [Coolor](https://coolors.co/)
 
 <details>
