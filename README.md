@@ -34,7 +34,7 @@ BikeDisco is a public bicycle station application that provides station location
 ## User Expectations
 - Application showing clear purpose.
 - Easy interface that allows quick and efficient navigation.
-- Interact with other users by 
+- Interact with other users by writing reviews and also adding comments on the reviews.
 
 ## User Stories
 - Dividied the user stories according to the sections; homepage, reviews, profile and contact.
@@ -121,6 +121,16 @@ status | IntegerField | choices=STATUS, default=1 |
 country | CharField | max_length=100, null=True |
 city | CharField | max_length=100, null=True |
 station_name | CharField | max_length=100, null=True |
+
+
+### Comment Model
+
+| Name | Field Type | Validation |
+| :---:   | :---: | :---: |
+| post | ForeignKey | Post, on_delete=models.CASCADE, related_name='comment' |
+| user | ForeignKey | User, on_delete=models.CASCADE, related_name='commentuser', null=True |
+| comment | TextField | |
+| created_on | DataTimeField | auto_now_add=True |
 
 ### Profile Model
 
