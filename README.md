@@ -234,6 +234,8 @@ Comment writter can delete their comments. Only the comment writter will be able
 
 User can create, read, update and delete their account.
 
+#### Create
+
 <details>
 <summary>See Profile Create</summary>
 
@@ -241,6 +243,7 @@ User can create, read, update and delete their account.
 
 </details>
 
+#### Read
 
 <details>
 <summary>See Profile Read</summary>
@@ -249,6 +252,7 @@ User can create, read, update and delete their account.
 
 </details>
 
+#### Update
 
 <details>
 <summary>See Profile Edit</summary>
@@ -256,6 +260,8 @@ User can create, read, update and delete their account.
 ![pedit](static/images/readme-images/crud-profileedit01.png)
 
 </details>
+
+#### Delete
 
 <details>
 <summary>See Profile Delete</summary>
