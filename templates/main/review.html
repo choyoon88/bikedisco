@@ -35,13 +35,13 @@
 
         </div>
         <div class="card-footer">
-          <button type="button" class="btn btn-primary float-end read-full-review" data-bs-toggle="modal" data-bs-target="#modal-{{ post.id }}">Read full review</button>
+          <button type="button" class="btn btn-primary float-end read-full-review" data-bs-toggle="modal" data-bs-target="#modal-{{ post.slug }}">Read full review</button>
         </div>
       </div>
     </div>
 
 <!-- modal -->
-    <div class="modal fade modal-lg" id="modal-{{ post.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade modal-lg" id="modal-{{ post.slug }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
@@ -63,7 +63,8 @@
             />
             {% endif %}
 
-            
+            <br>
+            <br>
             {{ post.content|striptags }}<br>
             <p><strong>REVIEWED BY</strong> {{ post.author }}</p>
             <hr>
@@ -72,6 +73,30 @@
             <strong>City</strong> - {{ post.city|striptags }} |
             <strong>Station</strong> - {{ post.station_name|striptags }}
             <p class="card-text tect-muted h6 text-body-secondary">{{ post.created_on }}
+            <hr>
+            <h4>Comments</h4>
+
+            {% if not post.comments.all %}
+              No Comments Yet...
+
+            {% else %}
+              {% for comment in post.comments.all %}
+                <strong>{{ comment.name }} - {{ comment.created_on }}</strong>
+                <br>
+                {{ comment.comment }}
+                <br><br>
+              {% endfor %}
+                
+            {% endif %}
+
+            <div class="form-group">
+              <form method="POST" action="{% url 'add_comment' %}">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <input type="hidden" name="slug" value="{{ post.slug }}">
+                <button class="btn btn-success">Add Comment</button>
+              </form>
+            </div>
 
           </div>
           <div class="modal-footer">

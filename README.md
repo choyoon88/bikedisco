@@ -34,6 +34,7 @@ BikeDisco is a public bicycle station application that provides station location
 ## User Expectations
 - Application showing clear purpose.
 - Easy interface that allows quick and efficient navigation.
+- Interact with other users by 
 
 ## User Stories
 - Dividied the user stories according to the sections; homepage, reviews, profile and contact.
@@ -145,14 +146,16 @@ subject | TextField | |
 
 ## Validation
 
-### HTML check
+### HTML
 
 - Conduncted every HTML codes on [The W3C Markup Validation Service](https://validator.w3.org/#validate_by_input)
 
-- Ignore all error messages related about missing !doctype on the top since we are loading static. 
+- Ignored all error messages related about missing !DOCTYPE on the top since we are loading static.
+
+- Every other errors were parse error related with Django template and Jinja2 so they were ignored as well.
 
 
-### JShint
+### JavaScript
 
 - Conducted [JShint](https://jshint.com/) validation check for script.js codes.
 
@@ -178,6 +181,13 @@ subject | TextField | |
 213	targetUrl
 103	MarkerClusterer
 ```
+
+### Python
+
+- Conducted all py files on [CI Python Linter](https://pep8ci.herokuapp.com/)
+
+- No errors were found. 
+
 
 ## WAVE (Accessibility check)
 

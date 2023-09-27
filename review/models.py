@@ -41,3 +41,18 @@ class Post(models.Model):
             counter += 1
         self.slug = slug
         super().save(*args, **kwargs)
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name='comment',
+        null=True
+        )
+    comment = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.post.title, self.user)

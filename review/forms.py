@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, Comment
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
@@ -19,3 +19,14 @@ class PostForm(forms.ModelForm):
             'bike_station_city',
             'bike_station_name'
             ]
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = [
+            'comment'
+        ]
+        widgets = {
+            'comment': forms.TextInput(attrs={'class': 'form-control'}),
+        }
