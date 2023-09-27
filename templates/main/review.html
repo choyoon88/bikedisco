@@ -81,7 +81,7 @@
 
             {% else %}
               {% for comment in post.comments.all %}
-                <strong>{{ comment.name }} - {{ comment.created_on }}</strong>
+                <strong>{{ comment.user }} - {{ comment.created_on }}</strong>
                 <br>
                 {{ comment.comment }}
                 <br><br>

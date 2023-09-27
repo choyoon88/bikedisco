@@ -29,9 +29,6 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    def number_of_likes(self):
-        return self.likes.count()
-
     def save(self, *args, **kwargs):
         base_slug = slugify(self.title)
         slug = base_slug
@@ -44,15 +41,22 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    user = models.OneToOneField(
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        related_name='comments'
+        )
+    user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='comment',
+        related_name='commentsuser',
         null=True
         )
     comment = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ('created_on',)
+
     def __str__(self):
-        return '%s - %s' % (self.post.title, self.user)
+        return f"Comment by {self.user}"

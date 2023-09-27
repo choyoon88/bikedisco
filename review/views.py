@@ -104,48 +104,17 @@ def delete_review(request, slug):
     return redirect('review')
 
 
-# def write_comment(request):
-
-#     comment_form = CommentForm()
-
-#     if request.method == 'POST':
-#         comment_form = CommentForm(request.POST)
-#         if comment_form.is_valid():
-#             comment_form.save()
-
-#     context = {'comment_form': comment_form}
-#     return render(request, 'main/review.html', context)
-
-
-# def write_comment(request):
-#     post = get_object_or_404(Post)
-#     comment_form = CommentForm()
-
-#     if request.method == 'POST':
-#         comment_form = CommentForm(request.POST)
-#         if comment_form.is_valid():
-#             comment = comment_form.save(commit=False)
-#             comment.post = post
-#             comment.save()
-#             return redirect('review')
-
-#     return render(
-#         request,
-#         'main/review.html',
-#         {'post': post, 'comment_form': comment_form}
-#         )
-
+@login_required
 def write_comment(request):
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
-            slug = request.POST.get('slug')  # Get the slug from the form
-            post = get_object_or_404(Post, slug=slug)  # Retrieve the Post object
+            slug = request.POST.get('slug')
+            post = get_object_or_404(Post, slug=slug)
             comment = comment_form.save(commit=False)
             comment.post = post
+            comment.user = request.user
             comment.save()
-            return redirect('review')  # Redirect to the 'review' view
+            return redirect('review')
 
-    # Handle the case when the comment form is not valid
     return render(request, 'main/review.html', {'comment_form': comment_form})
-
