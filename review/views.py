@@ -106,6 +106,8 @@ def delete_review(request, slug):
 
 @login_required
 def write_comment(request):
+    comment_form = CommentForm()
+
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
@@ -118,3 +120,10 @@ def write_comment(request):
             return redirect('review')
 
     return render(request, 'main/review.html', {'comment_form': comment_form})
+
+
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    comment.delete()
+    messages.success(request, 'Your comment has been removed.')
+    return redirect('review')
