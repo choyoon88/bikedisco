@@ -397,6 +397,167 @@ subject | TextField | |
 
 # Testing
 
+## Device Testing
+
+### Mobile Device
+
+Conducted on two mobile devices; iPhone and iPad
+
+#### iPhone 12 Mini
+
+<details>
+<summary>Screenshot</summary>
+
+![iphone12m](static/images/readme-images/iphone12mini.jpeg)
+
+</details>
+
+#### iPad 8
+
+<details>
+<summary>Screenshot</summary>
+
+![ipad8](static/images/readme-images/ipad8.jpeg)
+
+</details>
+
+## Browser Compatibility
+
+Conducted on two browsers; Chrome and Safari
+
+- Chrome
+
+<details>
+<summary>Screenshot</summary>
+
+![chrome](static/images/readme-images/chrome.png)
+
+</details>
+
+- Safari
+
+<details>
+<summary>Screenshot</summary>
+
+![safari](static/images/readme-images/safari.png)
+
+</details>
+
+## Manual Testing
+
+### Home Page
+
+- As a site user, I can navigate through Google Maps.
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
+| Click the top-left logo 'Bike Disco' from the nav bar | Direct to home page | P |
+| Zoom in/out the Map | Map should zoom in/out | P |
+| Click the marker cluster | Zoom in instantly to see the markers of the area | P |
+| Click the marker | Info Window with the name of the station and the available bicycle number should appear | P |
+| While at least one info window being opened, click on the area where there is no marker in the Map | Info window should close | P |
+| Click the 'Write Review' from the info window | Sign in page should load | P |
+| Sign in from the above page | - User be logged in <br> - Direct to review writing page | P |
+| Write a review without filling in any form | Get a message 'Please fill in this field' | P |
+| Post the review | Redirect to Review page with the new review showing up on the review list | P |
+
+
+- As a site user, I can navigate the top menu bar
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
+| Click 'Write Review' button | Direct to Sign in page | P |
+| Click Review page | Direct to review list | P |
+| Click Join page | Direct to sign up page | P |
+| Click Login page | Direct to Sign in page | P |
+| Click Contact page | Direct to Contact page | P |
+
+- As an authenticated user, I can navigate the top menu bar with different options.
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
+| See the nav bar | Profile and Logout instead of Join and Login | P |
+
+
+### Join
+
+- As a site user, I can join to be an authenticated user
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
+| On the Sign Up page, try to sign up without filling either Username, Password, Password(again) | Get a message 'Please fill in this field' on the first found missing field from the top | P |
+| Enter Username that is already taken (e.g. howler) | Get 'A user with that username already exists.' | P |
+| Enter password that is less than 8 characters | Get 'This password is too short. It must contain at least 8 characters.' | P |
+| Enter password that is too common (e.g. qwertyui, 1q2w3e4r) | Get 'This password is too common.' | P |
+| Enter password with only numbers | Get 'This password is entirely numeric.' | P |
+| Enter password that doesn't match with each other | Get 'You must type the same password each time.' | P |
+| Enter unique username, and non-common & non-entire-numeric password and sign up | - Redirect to homepage <br> - Alert message 'Successfully signed in as `userid`' | P |
+| Once signed in, user should get 'Hi, `userid`' on the top nav bar next to 'Write Review' button | . | P |
+
+
+### Reviews
+
+- As an authenticated user, I can write a review.
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
+| Click 'Write review' from either Google Maps or top nav bar | Direct to review writing form | P |
+| Try to post without filling the form | Direct up to the Title text area | P |
+| Try to post by filling in only the Title | Get 'Please fill in this field' on the Content text field | P |
+| Try to post by filling in Title and Content | Get 'Please fill in this field' on the Bike station country text area | P |
+| Try to post by filling the station country | Get 'Please fill in this field' on the Bike station city text area | P |
+| Try to post by filling the station country and the station city | Get 'Please fill in this field' on the Bike station name text area | P | 
+| Try dropdown menu for country, city and station name | - After selecting the country, the city should populate then after selecting the city, station name should populate <br> - Selected item should appear automatically on the text area that corresponds | P |
+| Try to post by filling in every thing except adding an image | - Direct to reviews page <br> - Alert message 'Your review has been successfully posted.' | P |
+
+
+- As an authenticated user, I can update my review 
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
+| Select the review that I have not written | - Modal page with full review and the comment area to show up <br> - Only close button should show up | P |
+| Select the review that I am the author | - Modal page with full review and the comment area to show up <br> - Edit and Delete button be available | P |
+| Click 'Edit' | Direct to Edit page | P |
+| Make some change and click update | Popup message 'Are you sure you want to change this review?' |
+| Click OK | Direct to review list page | P |
+| Click the edited review | Updated review to show up | P |
+| Click Cancel from the popup message 'Are you sure you want to change this review?' | - No updates should be made <br> - Same edit page | P |
+
+- As an authenticated user, I can delete my review 
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
+| Select the review that I am the author | - Modal page with full review and the comment area to show up <br> - Edit and Delete button be available | P |
+| Click 'Delete' | Popup message 'Are you sure you want to delete this review?' | P |
+| Click OK | - Direct to review list page <br> - alert message 'Your review has been successfully removed.' <br> - Review is not available on the list | P |
+| Click Cancel from the popup message 'Are you sure you want to delete this review?' | Popup message closed | P |
+
+
+- As a site user and/or authenticated user, I can read reviews
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
+| Go to Reviews | Reviews should show up on descending order (latest created one on the top) | P |
+| 6 reviews on one page then should be paginated | Paginated list show up on the bottom after the review list | P | 
+| Click 'Read full review' | - Modal view for the full review should show <br> - Full review should contain 'title, image, content, reviewed by, station info, reviewed date and comment section' | P |
+
+
+- As a unauthenticated user, I cannot leave comment but asked to sign in
+
+| As a unauthenticated user, click add comment without filling in the comment | Get 'Please fill in this field' | P |
+| As a unauthenticated user, click add comment after filling in the comment | Direct to sign in page | P |
+| From the above sign in page, log in with your id and pw | Direct to home page | P |
+| 
+
+
+
+## Bugs
+
+- While trying to add a comment as an unauthenticated user, but then logged in from the redirected login page, I got 'There is no review to display. Be the first reviewer!' which is incorrect. 
+    - Changed the redirect page from 'main/review.html' to 'main/searchstaion.html' for write_comment view in Review app. 
+    - Now the unauthenticated users logged in while they were trying to comment will be redirected to homepage after logging in.
+
+
 
 # Validation
 

@@ -119,7 +119,10 @@ def write_comment(request):
             comment.save()
             return redirect('review')
 
-    return render(request, 'main/review.html', {'comment_form': comment_form})
+    return render(
+        request,
+        'main/searchstation.html',
+        {'comment_form': comment_form})
 
 
 def delete_comment(request, comment_id):
