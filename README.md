@@ -1,6 +1,8 @@
 # BikeDisco
 ![amiresponsive](static/images/readme-images/bd-responsive.png)
 
+[Go to Live Website](https://bikedisco-e0cebf6eeccf.herokuapp.com/) 
+(cmd+click to open on a new tab)
 
 # About
 
