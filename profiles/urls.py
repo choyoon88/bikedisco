@@ -1,3 +1,7 @@
+"""
+module for profiles url
+"""
+
 from profiles import views
 from django.urls import path
 from profiles.views import ProfileView, DeleteAccount

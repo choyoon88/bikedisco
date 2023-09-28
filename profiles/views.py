@@ -9,6 +9,10 @@ from .forms import EditProfile
 
 
 class ProfileView(generic.ListView):
+    """
+    show relevant fields on the profile
+    when the user clicks the Profile
+    """
     model = Profile
     template_name = 'main/profile.html'
     fields = 'user', 'firstname', 'lastname', 'email', 'phone_number',
@@ -18,6 +22,9 @@ class ProfileView(generic.ListView):
 
 
 def edit_profile(request):
+    """
+    check if the user updates their profile
+    """
     if request.method == 'POST':
         profile_form = EditProfile(request.POST, instance=request.user.profile)
 
@@ -38,6 +45,10 @@ def edit_profile(request):
 
 
 class DeleteAccount(SuccessMessageMixin, generic.DeleteView):
+    """
+    function for deleting the profile
+    it also deletes the user
+    """
     model = User
     template_name = 'main/delete_profile.html'
 

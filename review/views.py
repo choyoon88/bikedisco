@@ -11,6 +11,11 @@ from .forms import PostForm, CommentForm
 
 
 def get_map(request):
+    """
+    fetching my google maps api key from settings
+    and render it on the homepage to make the
+    google maps show up
+    """
     MAPS_API_KEY = settings.MAPS_API_KEY
     return render(
         request,
@@ -19,23 +24,17 @@ def get_map(request):
 
 
 def get_searchstation(request):
+    """
+    rendering searchstaion (homepage) when on request
+    """
     return render(request, 'main/searchstation.html')
-
-
-def get_review(request):
-    return render(request, 'main/review.html')
-
-
-def get_join(request):
-    return render(request, 'main/join.html')
-
-
-def get_login(request):
-    return render(request, 'main/login.html')
 
 
 @login_required
 def get_write_review(request):
+    """
+    view the PostForm when requesting to write a review
+    """
     submitted = False
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
@@ -58,6 +57,12 @@ def get_write_review(request):
 
 
 class PostList(generic.ListView):
+    """
+    Review lists to show up on review page
+    reviews will be aligned on descending order
+    and will paginate when there is more than 6 reviews
+    on the current page.
+    """
     model = Post
     queryset = Post.objects.filter(status=1).order_by('-created_on')
     template_name = 'main/review.html'
@@ -75,6 +80,10 @@ class PostList(generic.ListView):
 
 
 def edit_review(request, slug):
+    """
+    edit form to be rendered when the user requests for edit
+    uses PostForm and get not only the text data but the image data too
+    """
     review = get_object_or_404(Post, slug=slug)
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES, instance=review)
@@ -98,6 +107,9 @@ def edit_review(request, slug):
 
 
 def delete_review(request, slug):
+    """
+    function for deleting the written review
+    """
     review = get_object_or_404(Post, slug=slug)
     review.delete()
     messages.success(request, 'Your review has been successfully removed.')
@@ -106,6 +118,9 @@ def delete_review(request, slug):
 
 @login_required
 def write_comment(request):
+    """
+    rendering comment form to write a comment on each post
+    """
     comment_form = CommentForm()
 
     if request.method == 'POST':
@@ -127,6 +142,9 @@ def write_comment(request):
 
 
 def delete_comment(request, comment_id):
+    """
+    function to delete a comment
+    """
     comment = get_object_or_404(Comment, id=comment_id)
     comment.delete()
     messages.success(request, 'Your comment has been removed.')

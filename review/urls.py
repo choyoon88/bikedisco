@@ -1,3 +1,6 @@
+"""
+module for review url
+"""
 from review import views
 from django.urls import path
 

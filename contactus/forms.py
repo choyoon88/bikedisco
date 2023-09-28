@@ -3,7 +3,9 @@ from .models import Contact
 
 
 class ContactForm(forms.ModelForm):
-
+    """
+    A class for contact form to reach out the admin
+    """
     class Meta:
         model = Contact
         fields = ['name', 'email', 'subject']

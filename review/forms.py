@@ -5,6 +5,12 @@ from crispy_forms.layout import Submit
 
 
 class PostForm(forms.ModelForm):
+    """
+    create a form when user clicks to
+    write a review.
+    relevant fields from Post model will show up
+    as well as the extra dropdown menu as a charfield
+    """
     bike_station_country = forms.CharField(max_length=100)
     bike_station_city = forms.CharField(max_length=100)
     bike_station_name = forms.CharField(max_length=100)
@@ -22,6 +28,9 @@ class PostForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
+    """
+    creates a form for adding a comment
+    """
     class Meta:
         model = Comment
         fields = [

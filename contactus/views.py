@@ -5,6 +5,10 @@ from django.contrib import messages
 
 
 def get_contact(request):
+    """
+    Function for the user to view the form
+    and post it to the admin
+    """
     if request.method == 'POST':
         contact_form = ContactForm(request.POST)
         if contact_form.is_valid():

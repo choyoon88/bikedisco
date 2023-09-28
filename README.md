@@ -142,7 +142,7 @@ Project code structure is organised according to the various application using D
 - Procfile: Specify the commands that should be executed when Django app is deployed on the hosting service. 
 - static: css and js file is stored as well as the image files for the readme file. 
 - requirements.txt: Lists all the dependencies required for the Django project to run. 
-- env.py: Sensitive data such as API keys and SECRET key are stored here. My Google Maps API KEY is also stored here so that it would not be revealed even on the base.html code so that it could prevent potential attackers not fetch it from the developer's page.
+- env.py: Sensitive data such as API keys and SECRET key are stored here. My Google Maps API KEY is also stored here so that it would not be revealed even on the base.html code so that it could prevent potential attackers not fetch it from the developer's page. Maps API key is also added on my Environment Variables.
 
 # CRUD Functionality 
 
@@ -391,6 +391,10 @@ subject | TextField | |
 - Google Maps are not paid version so it will show unwanted water marks on the background of the map and a popup message on the top. Despite that, all the expected functions that I have implemented are working well; such as importing bicycle station markers, showing info window on each marker and getting clustered when the map is zoomed out.
 
 # Agile Methodologies
+
+At first it was difficult to set up the priorities without Agile methodology and I spent too much time working on Google Maps and API rendering. Eventually I have done it up and running on my app, but figured out if I first started working with Kanban and set up the work priorities would have made the work with more efficiency. 
+
+I tried to implement myself on creating Kanban before actually building up the codes to make a function, and that helped a lot to focus on my priorities. 
 
 ## Kanban
 
@@ -692,34 +696,54 @@ Conducted on two browsers; Chrome and Safari
 - No errors were found. 
 
 
-## WAVE (Accessibility check)
-
-WAVE is a suite of evaluation tools that helps the web content more accessible to inviduals with disabilities. 
-
-There were some issues spotted on the first check.
-
-<details>
-<summary>Home</summary>
-
-![waveissue](static/images/readme-images/wave-issuesfound.png)
-</details>
-
-- 2 Errors: Empty Link. Icon links on the footer that links to my Linkedin and Github doesn't contain text which would make the screen reader with no info. 
-    - Fixed by adding `aria-hidden` and `.sr-only ` 
-
-- 1 Contrast Error: Very low contrast. Link text color to CityBike API on the footer had a very low contrast between text and the background color. 
-    - Fixed by changing the text color to white. 
-
-
-
 # Deployment 
 
+BikeDisco uses Heroku for deployment. Using ElephantSQL for database. 
 
+## ElephantSQL
+
+1. Sign in to my account
+2. Create new instance
+3. Give the plan name bikedisco
+4. Select plan with Tiny Turtle (Free)
+5. Select region (EU-West_1 (Ireland))
+6. Click Review
+7. If all the inputs match of what I expect, click Create Instance 
+8. From detail, copy the URL that starts as 'postgress://'
+9. Add the URL on my env.py file as 'DATABASE_URL'
+
+
+## Heroku Deployment
+
+1. Before deploying to Heroku, I need to make sure I have my env.py and store the sensitive data there
+2. Create env.py file and add env.py on my .gitignore so that it does not get updated on my repository. 
+3. Add the following on env.py 
+    os.environ["DATABASE_URL"] = "_ElephantSQL URL_"
+    os.environ["SECRET_KEY"] = "_MY SECRET KEY_"
+    os.environ["CLOUDINARY_URL"] = "_CLOUDINARY URL_"
+    os.environ["MAPS_API_KEY"] = "_API MAP KEY_"
+4. Sign up to Heroku
+5. Create new project
+6. After creating project go to Settings
+7. Add Config Vars
+
+    CLOUDINARY_URL <br>
+    DATABASE_URL <br>
+    API_MAPS_KEY <br>
+    PORT <br>
+    SECRET_KEY <br>
+    DISABLE_COLLECTSTATIC = 1 <br>
+        > Only for initial deployment. Should be removed later
+8. Go to Deploy
+9. From Deployment method select Github
+10. Find my githib repository
+11. Select the branch I want to deploy
+12. Click deploy branch
+    
 
 ## Credits and References
 
 - [CityBikes API Documentation](https://api.citybik.es/v2/#net_resource)
-- jQuery
 - [Google Maps API](https://developers.google.com/maps/documentation/javascript)
 - [Bootstrap 5.3.1](https://getbootstrap.com/docs/5.3/)
 - [Django](https://www.djangoproject.com/)
