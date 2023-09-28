@@ -542,20 +542,108 @@ Conducted on two browsers; Chrome and Safari
 | Click 'Read full review' | - Modal view for the full review should show <br> - Full review should contain 'title, image, content, reviewed by, station info, reviewed date and comment section' | P |
 
 
-- As a unauthenticated user, I cannot leave comment but asked to sign in
+### Comment
 
+- As a unauthenticated user, I cannot leave any comment but asked to sign in
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
 | As a unauthenticated user, click add comment without filling in the comment | Get 'Please fill in this field' | P |
 | As a unauthenticated user, click add comment after filling in the comment | Direct to sign in page | P |
 | From the above sign in page, log in with your id and pw | Direct to home page | P |
-| 
+
+
+- As an authenticated user, I can write a comment 
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
+| Click add comment without filling in the comment | Get 'Please fill in this field' | P |
+| Click add comment after filling in the comment | - Redirect to review list <br> - Alert message 'Your comment has been added.' | P |
+| Go back to see the full review | - My comment should show up <br> - Comments in ascending order (older show on the top) | P | 
+
+- As a commenter, I can delete my comment
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
+| Bin button showing at the end of my comment | . | P |
+| Click the bin button | - Direct to review list <br> - Alert message 'Your comment has been removed.' | P |
+| Go back to see the full review | My deleted comment should not appear | P |
+
+
+### Profile
+
+- As an authenticated user, I can see my profile 
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
+| Go to Profile page | Profile with User ID showing and the rest as blank or 'Enter your first/last name' should be visible | P |
+
+- As an authenticated user, I can edit my profile
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
+| Click 'Edit my profile' | Direct to edit profile form page | P |
+| Update without entering anything | - Popup box 'Are you sure you want to change your profile?' | P |
+| Click OK | Get 'Please fill in field' | P | 
+| Enter email with a wrong email format | Get 'Enter a valid email address.' | P |
+| Enter only email with correct email format | - Direct to updated edit page <br> - Alert message 'Your profile has been successfully updated.' | P |
+| Enter phone number in a non-international format (without the country code) | - Popup box 'Are you sure youu want to change your profile?' <br> - Click OK <br> - Get 'Enter a valid phone number (e.g. +12125552368).' | P |
+| Enter First name, Last name, email, phone number on their right format | - Popup box 'Are you sure youu want to change your profile?' <br> - Click OK <br> - Direct to updated profile page <br> - Alert message 'Your profile has been successfully updated.' | P |
+
+- As an authenticated user, I can delete my profile
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
+| From my profile editing page, click Delete | Direct to a page saying 'Are you sure you want to delete your profile? You cannot reuse your current ID to join after deleting the account.' | P |
+| Click Delete Account | - Direct to homepage <br> - Logged out <br> - Alert message 'Your account has been deleted.' | P |
+
+
+### Logout
+
+- As an authenticated user, I can logout from the website
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
+| Click Logout from the navbar | Direct to Sign out page | P |
+| Click 'Sign out' | - Direct to home page <br> - Alert message 'You have signed out.' | P |
+
+
+### Contact
+
+- As an site user, I can write contact form to reach out to the admin 
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
+| Click Contact from the nav bar | Direct to contact form | P |
+| Try to submit without writing anthing | Get 'Please fill in this field' on Title field | P |
+| Try to submit only the name field written | Get 'Please fill in this field' on Email field | P |
+| Try to submit only the email field written | Get 'Please fill in this field' on Title field | P |
+| Try to submit only the subject field blank with incorrect email format | Get 'Please include @ in the email address' | P | 
+| Try to submit only the subject field blank with correct email format | Get 'Please fill in this field' on Subject field | P |
+| Try to submit everything writtne with correct email format | - Direct to homepage <br> - Alert message 'Thank you for contacting us. We will get back to you soon.' | P |
+
+### Footer 
+
+- As a site user, I can direct to the links on the footer
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
+| Click CityBike API | Open CityBike API site on a new tab | P |
+| Click Linkedin icon | Open my linkedin page on a new tab | P |
+| Click Github icon | Open my Github page on a new tab | P | 
 
 
 
-## Bugs
 
-- While trying to add a comment as an unauthenticated user, but then logged in from the redirected login page, I got 'There is no review to display. Be the first reviewer!' which is incorrect. 
+## Bugs and Issues
+
+- While trying to add a comment as an unauthenticated user, then logged in from the redirected login page, I got 'There is no review to display. Be the first reviewer!' which is incorrect. 
     - Changed the redirect page from 'main/review.html' to 'main/searchstaion.html' for write_comment view in Review app. 
     - Now the unauthenticated users logged in while they were trying to comment will be redirected to homepage after logging in.
+
+- Sometimes the dropdown menu for selecting country will not appear. If the country dropdown doesn't appear city and station dropdown will not appear since the dropdown menu options will change according to what the previously selected option was.
+    - Unfortunately, cannot fix this bug, but reopening the website worked to have it showing up.
+    - Workaround: Users can directly type the country, city and station name in such case.
 
 
 
@@ -621,6 +709,7 @@ There were some issues spotted on the first check.
 
 - 1 Contrast Error: Very low contrast. Link text color to CityBike API on the footer had a very low contrast between text and the background color. 
     - Fixed by changing the text color to white. 
+
 
 
 # Deployment 

@@ -117,6 +117,7 @@ def write_comment(request):
             comment.post = post
             comment.user = request.user
             comment.save()
+            messages.success(request, 'Your comment has been added.')
             return redirect('review')
 
     return render(
