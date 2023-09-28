@@ -1,3 +1,5 @@
+
+// URLs from CityBike API. Collected Ireland and UK URLs 
 const urls = [
     "https://api.citybik.es/v2/networks/dublinbikes",
     "https://api.citybik.es/v2/networks/cork",
@@ -15,6 +17,7 @@ const urls = [
     "https://api.citybik.es/v2/networks/belfastbikes-belfast",
 ];
 
+// Fetching the data from the above APIs and then making an array to be used for the project
 Promise.all(urls.map(url => fetch(url).then(response => response.json())))
     .then((dataArray) => {
         console.log("API Data:", dataArray);
@@ -47,7 +50,7 @@ Promise.all(urls.map(url => fetch(url).then(response => response.json())))
         console.error("Error fetching data:", error);
     });
 
-
+// Basic Google Maps rendering JavsScript code is from Google Maps documentation (https://developers.google.com/maps/documentation/javascript/adding-a-google-map)
 function initMap(locationsAndStationInfos) {
 
     let map = new google.maps.Map(document.getElementById("map"), {
@@ -207,6 +210,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // Function to allow 'Write Review' button from the reviews page
+// targetUrl is stored under searchstation.html
 const reviewBtn = document.getElementById("review-btn");
 
 reviewBtn.addEventListener('click', () => {

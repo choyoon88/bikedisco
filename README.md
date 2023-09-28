@@ -98,6 +98,51 @@ BikeDisco is a public bicycle station application that provides station location
 - The actual email sending function is not implemented yet since this project is not aiming for that, but the submitted form will be sent to the database and admin will be able to read it. 
 - Also the users will still get the alert message that saying 'Thank you for contacting us. We will get back to you soon.'
 
+### Join (Sign up), Login, Logout
+
+- Joining the website as an authenticated user, login and logout features are all part of django-allauth library. The templates are under templates > account > login.html, logout.html and signup.html. These files are using extends function from my base.html to match with the main design of the website. 
+- Steps to add django-allauth templates
+
+    1. Install django allauth by entering the line on the terminal: `pip3 install django-allauth`
+    2. Update my requirements.txt: pip3 `freeze --local > requirements.txt`
+    3. Add the allauth url on bikedisco > urls.py
+        `path('accounts/', include('allauth.urls')),`
+    4. Go to settings.py and add allauth apps on INSTALLED_APPS
+
+        `'django.contrib.sites',
+        'allauth',
+        'allauth.account',
+        'allauth.socialaccount',`
+    5. Set `SITE_ID = 1`
+    6. Add redirection urls so that after user logged in all logged out site will redirect to the home page
+
+       ` LOGIN_REDIRECT_URL = '/'
+        LOGOUT_REDIRECT_URL = '/'`
+    7. To prevent 500 errors during login and registertion add, 
+        `ACCOUNT_EMAIL_VERIFICATION = 'none'`
+
+    8. Migrate to the database 
+
+
+## Code Structure
+
+Project code structure is organised according to the various application using Django Framework. However, every html template is stored all together under templates > main folder.
+
+- Bikedisco App: Serves as the basic structure delivery, aka home app. It consists settings.py for the project, and urls.py for the homepage and includes all other app urls. It also handles the error page as well.
+
+- Contactus App: This app is for users to send a feedback or their opinion of the project to the site owner. It contains the model for Contact, form and views to see the Contact form.
+
+- Profile App: This app is for the authenticated users to manage their account. It has the CRUD functionality for the users to read, update and delete their account. 
+
+- Review App: This app contains full CRUD functionality for adding reviews and comments for authenticated user. It has two models; Post and Comment. Authenticated users can create, read, update and delete a review. Also they can create, read and delete comments.
+
+## Other Django Apps
+
+- settings.py: Contains all configuration settings for my Django project. 
+- Procfile: Specify the commands that should be executed when Django app is deployed on the hosting service. 
+- static: css and js file is stored as well as the image files for the readme file. 
+- requirements.txt: Lists all the dependencies required for the Django project to run. 
+- env.py: Sensitive data such as API keys and SECRET key are stored here. My Google Maps API KEY is also stored here so that it would not be revealed even on the base.html code so that it could prevent potential attackers not fetch it from the developer's page.
 
 # CRUD Functionality 
 
@@ -306,12 +351,14 @@ Using 'Sarabun' supplied by Google Font and sans-serif as a backup when the brow
 
 ## Data Models
 
+5 models are used for each apps. 
+
 ### User Model
 - User model is from Django allauth library and it contains basic information about authenticated user. 
 
 ### Post Model
 
-- Post model is used for each review uploaded by the user. It has a foreign key for author which is extended by User model. It uses slug field to create a unique id for each review. Also country, city and the station_name data is fetched from the CityBike API which will be used to populate the drop down menu for the user's to select the station info when posting a review.
+- Post model is used for each review uploaded by the user. It has a foreign key for author which is extended by User model. It uses slug field to create a unique id for each review. Also country, city and the station_name data is fetched from the CityBike API which will be used to populate a dropdown menu for the user to select the station info when posting a review.
 
 | Name | Field Type | Validation |
 | :---:   | :---: | :---: |
@@ -362,12 +409,35 @@ email | EmailField | |
 subject | TextField | |
 
 
-## Testing
+## API
+
+### CityBike API
+
+- The main content which is providing real time data and location of the bicycle stations is coming from CityBike API. This API is a free service providing shared bicycle station data across various of countries. URL for each city could be found at the href on the API. See the steps taken to get the URL for each city with the below example.
+
+1. Go to http://api.citybik.es/v2/networks
+2. Search for the city name that you want to use (e.g. Cork)
+3. Check the href of that city. (e.g. "href":"/v2/networks/cork")
+4. Copy the href and add it on the end of the main URL (e.g. http://api.citybik.es/v2/networks/v2/networks/cork)
+5. Access the above URL and copy/paste it on the beautify website to navigate into the API (e.g. [JSON Formatter](https://jsonformatter.org/))
 
 
-## Validation
+### Google Maps API
 
-### HTML
+- This project is using Google Maps JavaScript API. My API code is being hidden in the env.py file and will not be sent over to Github since I have added the env.py file to be ignored (.gitignore).  
+- Google Maps are not paid version so it will show unwanted water marks on the background of the map and a popup message on the top. Despite that, all the expected functions that I have implemented are working well; such as importing bicycle station markers, showing info window on each marker and getting clustered when the map is zoomed out.
+
+# Agile Methodologies
+
+## Kanban
+
+
+# Testing
+
+
+# Validation
+
+## HTML
 
 - Conduncted every HTML codes on [The W3C Markup Validation Service](https://validator.w3.org/#validate_by_input)
 
@@ -376,7 +446,7 @@ subject | TextField | |
 - Every other errors were parse error related with Django template and Jinja2 so they were ignored as well.
 
 
-### JavaScript
+## JavaScript
 
 - Conducted [JShint](https://jshint.com/) validation check for script.js codes.
 
@@ -403,18 +473,17 @@ subject | TextField | |
 103	MarkerClusterer
 ```
 
-### Python
+## Python
 
 - Conducted all py files on [CI Python Linter](https://pep8ci.herokuapp.com/)
 
 - No errors were found. 
 
 
-### WAVE (Accessibility check)
+## WAVE (Accessibility check)
 
 # Deployment 
 
-## Create
 
 
 ## Credits and References
