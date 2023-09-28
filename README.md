@@ -157,13 +157,6 @@ Authenticated user can write review by clicking 'write review' from the top menu
 Once they submit, an alert message will let them know your review has been added. 
 
 <details>
-<summary>See Create Review GIF</summary>
-
-![createreviewgif](static/images/readme-images/createreview.gif)
-
-</details>
-
-<details>
 <summary>See Review Submit Popup Screenshot</summary>
 
 ![reviewpostpopup](static/images/readme-images/crud-reviewpost-popup.png)
@@ -173,13 +166,6 @@ Once they submit, an alert message will let them know your review has been added
 ### Read
 
 Authenticated user can read their review also other reviews that have been posted by other authenticated users. 
-
-<details>
-<summary>See Read Review GIF</summary>
-
-![readreviewgif](static/images/readme-images/crud-readreview.gif)
-
-</details>
 
 <details>
 <summary>See Read Review Screenshot</summary>
@@ -193,14 +179,6 @@ Authenticated user can read their review also other reviews that have been poste
 
 Authenticated user can update/edit their own reviews. 
 
-
-<details>
-<summary>See Edit Review GIF</summary>
-
-![editreviewgif](static/images/readme-images/crud-editreview.gif)
-
-</details>
-
 <details>
 <summary>See Edit Review Popup Screenshot</summary>
 
@@ -211,13 +189,6 @@ Authenticated user can update/edit their own reviews.
 ### Delete
 
 Authenticated user can delete their review. 
-
-<details>
-<summary>See Review Delete GIF</summary>
-
-![deletereviewgif](static/images/readme-images/crud-deletereview.gif)
-
-</details>
 
 <details>
 <summary>See Delete Review Popup</summary>
@@ -234,14 +205,6 @@ Authenticated user can write, read and delele comments.
 #### Create
 
 Authenticated user can write a comment on the review modal. 
-
-<details>
-<summary>See Post Comment GIF</summary>
-
-![writecomment](static/images/readme-images/crud-writecomment.gif)
-
-</details>
-
 
 #### Read 
 
