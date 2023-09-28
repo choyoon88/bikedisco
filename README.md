@@ -45,7 +45,7 @@ BikeDisco is a public bicycle station application that provides station location
 8. As an authenticated user and a review author I can edit/delete the review that I have posted so that I can amend my reviews.
 9. As an authenticated user I can login to the website. 
 10. As an authenticated user I can write comments on the posted review modal so that I can share my thoughts of the review. 
-11. As an authenticated user and a comment writter I can delete my comment so that I can remove my thoughts about the review.
+11. As an authenticated user and a commenter I can delete my comment so that I can remove my thoughts about the review.
 12. As an authenticated user I can access Profile page so that I can check my ID, email address, first name, last name and phone number. 
 13. As an authenticated user I can access edit from Profile page so that I can change my first name, last name, email and phone number. 
 14. As an authenticated user I can access Logout page so that I can log out from the site. 
@@ -138,10 +138,14 @@ Project code structure is organised according to the various application using D
 
 ## Other Django Apps
 
-- settings.py: Contains all configuration settings for my Django project. 
+- settings.py: Contains all configuration settings for my Django project.
+
 - Procfile: Specify the commands that should be executed when Django app is deployed on the hosting service. 
+
 - static: css and js file is stored as well as the image files for the readme file. 
+
 - requirements.txt: Lists all the dependencies required for the Django project to run. 
+
 - env.py: Sensitive data such as API keys and SECRET key are stored here. My Google Maps API KEY is also stored here so that it would not be revealed even on the base.html code so that it could prevent potential attackers not fetch it from the developer's page. Maps API key is also added on my Environment Variables.
 
 # CRUD Functionality 
@@ -200,11 +204,18 @@ Authenticated user can delete their review.
 
 ## Comment
 
-Authenticated user can write, read and delele comments. 
+Authenticated user can write, read and delete comments. 
 
 #### Create
 
 Authenticated user can write a comment on the review modal. 
+
+<details>
+<summary>See create Comment Screenshot</summary>
+
+![writecomm](static/images/readme-images/crud-commentadd.png)
+
+</details>
 
 #### Read 
 
@@ -220,14 +231,7 @@ User can read comments on a review modal by clicking on the 'Read full review' o
 
 #### Delete
 
-Comment writter can delete their comments. Only the comment writter will be able to see the trashcan icon next to their own comment on the review modal.
-
-<details>
-<summary>See delete comment GIF</summary>
-
-![deletecommentgif](static/images/readme-images/crud-deletecomment.gif)
-
-</details>
+Commenter can delete their comments. Only the commenter will be able to see the trashcan icon next to their own comment on the review modal.
 
 
 <details>
@@ -394,10 +398,21 @@ subject | TextField | |
 
 At first it was difficult to set up the priorities without Agile methodology and I spent too much time working on Google Maps and API rendering. Eventually I have done it up and running on my app, but figured out if I first started working with Kanban and set up the work priorities would have made the work with more efficiency. 
 
-I tried to implement myself on creating Kanban before actually building up the codes to make a function, and that helped a lot to focus on my priorities. 
+I tried to implement myself on creating Kanban before actually building up the codes to make a function, and that helped a lot to focus on my priorities.
+
+First, I created a project names 'pp4_BikeDisco'. Then I created an issue template so that I can use it when creating an issue that has to be worked on first. 
+
+On my project, I added extra section for EPIC and added 4 EPICs; HOME PAGE, REVIEWS, PROFILES and CONTACT so that I know which areas should be worked on.
 
 ## Kanban
 
+<details>
+<summary>See Kanban Screenshot</summary>
+
+![iphone12m](static/images/readme-images/kanban.png)
+
+</details>
+<br>
 
 # Testing
 
