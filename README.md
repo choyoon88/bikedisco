@@ -482,6 +482,23 @@ subject | TextField | |
 
 ## WAVE (Accessibility check)
 
+WAVE is a suite of evaluation tools that helps the web content more accessible to inviduals with disabilities. 
+
+There were some issues spotted on the first check.
+
+<details>
+<summary>Home</summary>
+
+![waveissue](static/images/readme-images/wave-issuesfound.png)
+</details>
+
+- 2 Errors: Empty Link. Icon links on the footer that links to my Linkedin and Github doesn't contain text which would make the screen reader with no info. 
+    - Fixed by adding `aria-hidden` and `.sr-only ` 
+
+- 1 Contrast Error: Very low contrast. Link text color to CityBike API on the footer had a very low contrast between text and the background color. 
+    - Fixed by changing the text color to white. 
+
+
 # Deployment 
 
 
