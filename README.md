@@ -653,9 +653,6 @@ Conducted on two browsers; Chrome and Safari
 | Click Linkedin icon | Open my linkedin page on a new tab | P |
 | Click Github icon | Open my Github page on a new tab | P | 
 
-
-
-
 ## Bugs and Issues
 
 - While trying to add a comment as an unauthenticated user, then logged in from the redirected login page, I got 'There is no review to display. Be the first reviewer!' which is incorrect. 
@@ -666,7 +663,27 @@ Conducted on two browsers; Chrome and Safari
     - Unfortunately, cannot fix this bug, but reopening the website worked to have it showing up.
     - Workaround: Users can directly type the country, city and station name in such case.
 
+## Lighthouse
 
+### Desktop
+
+<details>
+<summary>Screenshot</summary>
+
+![lhdesk](static/images/readme-images/lighthouse-desktop.png)
+
+</details>
+
+
+### Mobile
+
+<details>
+<summary>Screenshot</summary>
+
+![lhdesk](static/images/readme-images/lighthouse-mobile.png)
+
+</details>
+<br>
 
 # Validation
 
@@ -758,8 +775,10 @@ BikeDisco uses Heroku for deployment. Using ElephantSQL for database.
 12. Click deploy branch
     
 
-## Credits and References
+# Credits and References
 
+- [CodeInstitute](https://learn.codeinstitute.net/) - Main study 
+- [Codemy.com](https://codemy.com/) - Extra study
 - [CityBikes API Documentation](https://api.citybik.es/v2/#net_resource)
 - [Google Maps API](https://developers.google.com/maps/documentation/javascript)
 - [Bootstrap 5.3.1](https://getbootstrap.com/docs/5.3/)
