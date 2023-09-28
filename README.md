@@ -8,7 +8,7 @@ BikeDisco is a public bicycle station application that provides station location
 
 # Project Goals
 - Give users real time information about the bicycle station in Ireland and UK.
-- Enable users to write a review about specific stations and also view other reviews that were written by other users. 
+- Enable users to write a review about specific stations and also view other reviews that were written by other users and interact with each other.
 
 ## User Goal
 - View into the shared bicycle stations in Ireland and UK on Google Maps.
