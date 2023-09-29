@@ -554,7 +554,7 @@ Conducted on two browsers; Chrome and Safari
 | Select the review that I have not written | - Modal page with full review and the comment area to show up <br> - Only close button should show up | P |
 | Select the review that I am the author | - Modal page with full review and the comment area to show up <br> - Edit and Delete button be available | P |
 | Click 'Edit' | Direct to Edit page | P |
-| Make some change and click update | Popup message 'Are you sure you want to change this review?' |
+| Make some change and click update | Popup message 'Are you sure you want to change this review?' | P |
 | Click OK | Direct to review list page | P |
 | Click the edited review | Updated review to show up | P |
 | Click Cancel from the popup message 'Are you sure you want to change this review?' | - No updates should be made <br> - Same edit page | P |
@@ -779,10 +779,10 @@ BikeDisco uses Heroku for deployment. Using ElephantSQL for database.
 
 1. Before deploying to Heroku, I need to make sure I have my env.py and store the sensitive data there
 2. Create env.py file and add env.py on my .gitignore so that it does not get updated on my repository. 
-3. Add the following on env.py 
-    os.environ["DATABASE_URL"] = "_ElephantSQL URL_"
-    os.environ["SECRET_KEY"] = "_MY SECRET KEY_"
-    os.environ["CLOUDINARY_URL"] = "_CLOUDINARY URL_"
+3. Add the following on env.py <br>
+    os.environ["DATABASE_URL"] = "_ElephantSQL URL_"<br>
+    os.environ["SECRET_KEY"] = "_MY SECRET KEY_"<br>
+    os.environ["CLOUDINARY_URL"] = "_CLOUDINARY URL_"<br>
     os.environ["MAPS_API_KEY"] = "_API MAP KEY_"
 4. Sign up to Heroku
 5. Create new project
@@ -795,7 +795,7 @@ BikeDisco uses Heroku for deployment. Using ElephantSQL for database.
     PORT <br>
     SECRET_KEY <br>
     DISABLE_COLLECTSTATIC = 1 <br>
-        > Only for initial deployment. Should be removed later
+    -> Only for initial deployment. Should be removed later
 8. Go to Deploy
 9. From Deployment method select Github
 10. Find my githib repository
