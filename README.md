@@ -516,6 +516,21 @@ Conducted on two browsers; Chrome and Safari
 | Once signed in, user should get 'Hi, `userid`' on the top nav bar next to 'Write Review' button | . | P |
 
 
+### Login
+
+- As a site user, I can login
+
+| Action | Expected Behaviour | Pass or Fail |
+| :---   | :--- | :---: |
+| Click Login from nav bar | Sign in form show up | P |
+| Enter non-registered id and try to sign in | Get 'Please fill in this field' on password test area | P | 
+| Type in either username or the password incorrectly | Get 'The username and/or password you specified are not correct.' | P |
+| Click 'Forgot Password?' | Direct to Password Reset form | P |
+| Type non-email format on the email text area and try to reset my password | Get 'Please include @ in the email address' | P |
+| Type correct email formaat and try to reset password | Get 500 error since this is not implemented | P |
+| Click 'Go back to homepage | Redirect to home page | P |
+
+
 ### Reviews
 
 - As an authenticated user, I can write a review.

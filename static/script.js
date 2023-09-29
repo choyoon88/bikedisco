@@ -210,12 +210,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // Function to allow 'Write Review' button from the reviews page
-// targetUrl is stored under searchstation.html
+// targetUrl is stored under searchstation.html and base.html
 const reviewBtn = document.getElementById("review-btn");
 
 reviewBtn.addEventListener('click', () => {
     window.open(targetUrl, '_self');
 });
-
-
-
